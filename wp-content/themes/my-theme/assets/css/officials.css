@@ -1,0 +1,26 @@
+.officials-info-wrapper {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.officials-info-1 {
+  flex: 1 1 0;
+  min-width: 200px;
+}
+
+.officials-info-2 {
+  flex: 2 1 0;
+  min-width: 300px;
+  list-style: decimal;
+}
+
+
+
+@media (max-width: 900px) {
+  .officials-info-1,
+  .officials-info-2 {
+    flex: 100%;
+    max-width: 100%;
+  }
+}

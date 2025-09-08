@@ -1,0 +1,689 @@
+:root{
+  --content-max: 1200px;
+  --gutter: clamp(12px, 2vw, 24px);
+  --sidebar-left-desktop: 255px; /* Left sidebar width */
+  --sidebar-right-desktop: 300px; /* Right sidebar width */
+  --main-max: 595px; /* Cap for posts */
+}
+
+
+/*--------- Accessibility ---------*/
+.visually-hidden{
+  position:absolute !important;
+  width:1px;
+  height:1px;
+  padding:0;
+  margin:-1px;
+  overflow:hidden;
+  clip:rect(0 0 0 0);
+  white-space:nowrap;
+  border:0;
+}
+
+
+/*--------- Page Container ---------*/
+.column-wrapper{
+  max-width: min(var(--content-max), calc(100% - 2*var(--gutter)));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  padding-block: var(--gutter);
+}
+
+
+
+@media (max-width: 595px){
+  .column-wrapper{
+    padding-inline: 0;
+    max-width: 100%;
+  }
+}
+
+
+/*--------- Layout Mobile First ---------*/
+.three-column-layout{
+  display: grid;
+  gap: var(--gutter);
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "left"   /* Events */
+    "right"  /* Notice Board */
+    "main";  /* Posts */
+}
+
+.sidebar-left { 
+  grid-area: left;
+}
+.sidebar-right { 
+  grid-area: right; 
+}
+.main-content-area { 
+  grid-area: main;
+}
+
+/* Cap post content width below desktop */
+@media (max-width: 992px){
+  .main-content-area{
+    max-width: var(--main-max);
+    margin-inline: auto;
+    width: 100%;
+  }
+}
+
+/*--------- Desktop 3 Column Layout ---------*/
+@media (min-width: 992px){
+  .three-column-layout{
+    grid-template-columns: var(--sidebar-left-desktop) 1fr var(--sidebar-right-desktop);
+    grid-template-areas: "left main right";
+    align-items: start;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*--------- Sidebar Styles ---------*/
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px 0;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  overflow: hidden;
+  align-items: center;
+  text-align: center;
+  background-color: white;
+}
+
+.sidebar-header {
+  font-size: 1.25rem;
+  padding: 10px;
+  width: 100%;
+  border-bottom: 1px solid var(--color-primary);
+}
+
+.view-calendar-btn {
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 8px 12px;
+  width: fit-content;
+  border: 1px solid var(--color-primary);
+  border-radius: 8px;
+  background-color: white;
+  text-align: center;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.view-calendar-btn:hover,
+.view-calendar-btn:focus {
+  background-color: var(--color-primary-10p);
+  transform: translateY(-1px);
+}
+
+
+
+
+
+
+/* Loading */
+.r34ics-ajax-container.loading { 
+  background-color: white;
+  max-height: 83px;
+}
+
+
+/* Top-level container */
+.sidebar .events-widget { 
+  width: 100%;
+  height: fit-content;
+}
+.sidebar .events-widget .r34ics-ajax-container { 
+  width: 100%;
+  height: fit-content;
+}
+.sidebar .events-widget .ics-calendar.layout-list { 
+  width: 100%;
+  height: fit-content;
+  margin: 0;
+  padding-bottom: 4px;
+}
+
+/* Events holder */
+.sidebar .events-widget .ics-calendar-list-wrapper { 
+  width: 100%;
+  height: fit-content;
+  padding: 0 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+
+
+
+/* month headings */
+
+/* Month group label (e.g. "August 2025") */
+.sidebar .events-widget .ics-calendar-label {
+  color: var(--color-secondary);
+  width: fit-content;
+  padding: 8px;
+}
+
+
+
+
+
+/* day groups */
+
+/* A single event block */
+.sidebar .events-widget .ics-calendar-date-wrapper { 
+  display: flex;
+  gap: 4px;
+  background: none;
+  width: 100%;
+  height: fit-content;
+  align-items: center;
+  padding: 4px;
+  border-radius: 20px;
+  border: 1px solid transparent;
+  transition: background-color 0.3s ease;
+  position: relative;
+}
+
+.sidebar .events-widget .ics-calendar-date-wrapper:hover {
+  background: var(--color-primary-10p);
+  border: 1px solid var(--color-secondary);
+}
+
+
+/* Separator between consecutive day blocks */
+.sidebar .events-widget .ics-calendar-date-wrapper + .ics-calendar-date-wrapper::before {
+  content: "";
+  position: absolute;
+  display: block;
+  height: 1px;
+  width: 100%;
+  top: -3px;
+  left: 0;
+  background-color: var(--color-primary-20p);
+}
+
+
+/* Day with exactly one event */
+/*.events-widget .ics-calendar-date-wrapper[data-events-count="1"] {}*/
+
+/* Days with more than 1 event */
+.sidebar .events-widget .ics-calendar-date-wrapper[data-events-count]:not([data-events-count="0"]):not([data-events-count="1"]) {
+
+}
+
+/* Gap between 2 events happening on the same day*/
+.sidebar .events-widget
+.ics-calendar-date-wrapper[data-events-count]:not([data-events-count="0"]):not([data-events-count="1"])
+.events dd.event:not(:last-of-type) {
+  padding-top: 0.5rem !important;
+}
+
+
+
+/* date header inside a day */
+/* H4 date line (contains weekday/day/month spans) */
+.sidebar .events-widget .ics-calendar-date {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: var(--color-primary); 
+  border: 1px solid var(--color-primary);
+  border-radius: 20px;
+  width: 52px;
+  height: fit-content;
+  overflow: hidden;
+  margin: 0;
+  flex: 0 0 52px;
+}
+
+/* Month name (e.g. Aug) */
+.sidebar .events-widget .ics-calendar-date [data-date-format="M"] { 
+  display: block;
+  color: white;
+  width: 100%;
+  padding: 4px;
+  font-size: 0.75rem;
+}
+
+/* Day number (e.g. 18) */
+.sidebar .events-widget .ics-calendar-date [data-date-format="j"] { 
+  display: block;
+  background-color: white;
+  font-size: 1.25rem;
+  padding: 4px;
+  width: 100%;
+  height: 100%;
+  align-content: center;
+}
+
+/* Weekday name (e.g. Mon) */
+.sidebar .events-widget .ics-calendar-date [data-date-format="D"] {
+  display: block;
+  background-color: white;
+  font-size: 0.75rem;
+  padding: 0 4px 4px 4px;
+  width: 100%;
+}
+
+
+
+/* Multiday */
+.sidebar .events-widget .ics-calendar-date:has(.multiday-start) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: fit-content;
+  border-radius: 0;
+  background: none;
+  border: 0;
+  overflow: visible;
+}
+
+/* Tiles for start/end */
+.sidebar .events-widget .ics-calendar-date .multiday-start,
+.sidebar .events-widget .ics-calendar-date .multiday-end {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: var(--color-primary); 
+  border: 1px solid var(--color-primary);
+  border-radius: 20px;
+  width: 52px;
+  height: fit-content;
+  overflow: hidden;
+  margin: 0;
+  flex: 0 0 52px;
+}
+
+.sidebar .events-widget .ics-calendar-date .multiday-start [data-date-format="M"],
+.sidebar .events-widget .ics-calendar-date .multiday-end   [data-date-format="M"] {
+  display: block;
+  color: white;
+  width: 100%;
+  padding: 4px;
+  font-size: 0.75rem;
+}
+
+.sidebar .events-widget .ics-calendar-date .multiday-start [data-date-format="j"],
+.sidebar .events-widget .ics-calendar-date .multiday-end   [data-date-format="j"] {
+  display: block;
+  font-size: 1.25rem;
+  padding: 4px;
+  width: 100%;
+  height: 100%;
+  align-content: center;
+}
+
+.sidebar .events-widget .ics-calendar-date .multiday-start [data-date-format="D"],
+.sidebar .events-widget .ics-calendar-date .multiday-end   [data-date-format="D"] {
+  display: block;
+  width: 100%;
+  padding: 0 4px 4px 4px;
+  font-size: 0.75rem;
+}
+
+/* Separator between start and end  */
+.sidebar .events-widget .ics-calendar-date .multiday-sep {
+  color: var(--color-secondary);
+}
+
+
+
+/* events list within a day */
+/* DL list wrapper for the days events */
+.sidebar .events-widget .ics-calendar.r34ics_compact dl.events { 
+  display: flex;
+  flex-direction: column-reverse;
+  width: 100%;
+  margin: 0;
+  min-width: 0;
+}
+
+/* Start time cell */
+.sidebar .events-widget dl.events dt.time,
+.sidebar .events-widget dl.events dt.time .end_time {
+  font-size: 1rem;
+  color: var(--color-secondary);
+  font-weight: normal;
+  padding: 0px !important;
+}
+.all-day-indicator {
+  font-size: 1rem;
+  color: var(--color-secondary);
+  font-weight: normal;
+}
+
+
+
+/* End time fragment */
+
+/* Event content */
+.sidebar .events-widget dl.events dd.event { 
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: center;
+}
+
+/* Event title (base) */
+.sidebar .events-widget dl.events dd.event .title {
+  text-align: left;
+  font-size: 1rem;
+  color: var(--color-secondary);
+  font-weight: bold;
+}
+
+/* Detail wrapper (location + description) */
+.sidebar .events-widget dl.events dd.event .descloc {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Location line */
+.sidebar .events-widget dl.events dd.event .descloc .location { 
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+/* Make sidebar hug sides on very small screens */
+@media (max-width: 595px){
+  .sidebar {
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+  }
+}
+
+
+@media (max-width: 992px) {
+  .sidebar .events-widget .ics-calendar-list-wrapper {
+    flex-direction: row;
+    overflow-x: scroll;
+    
+  }
+
+
+  .sidebar .events-widget .ics-calendar-date-wrapper + .ics-calendar-date-wrapper::before {
+    height: 100%;
+    width: 1px;
+    top: 0;
+    left: -3px;
+  }
+
+  .sidebar .events-widget .ics-calendar-date-wrapper {
+    flex-direction: column;
+    height: auto;
+    flex: 0 0 37%;
+    max-width: 200px;
+  }
+
+  .sidebar .events-widget .ics-calendar-date {
+    min-height: fit-content;
+  }
+
+  .sidebar .events-widget dl.events dd.event .title {
+    font-size: larger;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================
+   Notice Board (Right Sidebar)
+   ========================= */
+
+/* Container: stack notices on desktop */
+.sidebar-right .notice-board{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  padding: 8px;
+}
+
+/* Notice card (desktop: vertical layout) */
+.notice{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 1px 0 rgba(0,0,0,.02);
+  text-align: left;
+}
+
+
+/* Title */
+.notice-title{
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.25;
+  color: var(--color-secondary);
+}
+
+/* Meta (expiry) */
+.notice-meta{
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--color-secondary);
+  opacity: 0.9;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-style: italic;
+}
+.notice-meta::before{
+  content: "";
+  inline-size: 8px;
+  block-size: 8px;
+  border-radius: 999px;
+  background: var(--color-primary);
+}
+
+/* Text */
+.notice-text{
+  font-size: .95rem;
+  color: var(--color-text);
+}
+.notice-text p{ margin: 0 0 .5rem; }
+.notice-text p:last-child{ margin-bottom: 0; }
+
+/* CTA button */
+.notice-link .button{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  border: 1px solid var(--color-primary);
+  border-radius: 10px;
+  background: white;
+  color: var(--color-secondary);
+  text-decoration: none;
+  font-size: .95rem;
+  line-height: 1;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.notice-link .button:hover,
+.notice-link .button:focus{
+  background: var(--color-primary-10p);
+  transform: translateY(-1px);
+}
+
+.notice-link .button::after{
+  content: "↗";
+  font-size: .95em;
+  opacity: .8;
+}
+
+/* Admin badges */
+.notice-admin-flag{
+  display: inline-block;
+  margin-left: 4px;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: var(--color-primary-10p);
+  border: 1px solid var(--color-primary-20p);
+  font-size: .7rem;
+  font-weight: 500;
+  color: var(--color-secondary);
+  opacity: .7;           /* less visual weight */
+}
+
+.notice-admin-flag--visibility{
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #fff4d6;
+  border: 1px solid #ffdca0;
+  font-size: .75rem;
+  font-weight: 700;
+  color: #8a5a00;
+  vertical-align: middle;
+}
+
+/* Empty state paragraph */
+.sidebar-right > p{
+  margin: 10px 12px;
+  color: var(--color-secondary);
+  opacity: .8;
+}
+
+/* ---------- Responsive (like events) ---------- */
+@media (max-width: 992px){
+  .sidebar-right .notice-board{
+    flex-direction: row;        /* horizontal tiles */
+    overflow-x: auto;
+    gap: 8px;
+  }
+
+  .notice{
+    flex: 0 0 70%;
+    max-width: 280px;
+    min-width: 220px;
+  }
+}
+
+@media (max-width: 595px){
+  .notice{
+    flex: 0 0 85%;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================
+   Admin "Create Notice" Button
+   ========================= */
+
+.button--create-notice {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid var(--color-primary);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--color-secondary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.button--create-notice:hover,
+.button--create-notice:focus {
+  background: var(--color-primary-10p);
+  transform: translateY(-1px);
+}
+
+.button--create-notice:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}

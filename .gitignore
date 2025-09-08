@@ -1,0 +1,47 @@
+# --- WordPress core (ignore) ---
+wp-admin/
+wp-includes/
+index.php
+license.txt
+readme.html
+wp-*.php
+xmlrpc.php
+
+# --- Sensitive/local config (ignore) ---
+wp-config.php
+wp-config-ddev.php
+
+# --- DDEV (ignore) ---
+.ddev/.downloads/
+.ddev/.importdb/
+.ddev/.webimageBuild/
+.ddev/db_snapshots/
+
+# --- WordPress generated (ignore) ---
+wp-content/uploads/
+wp-content/cache/
+wp-content/upgrade/
+wp-content/ai1wm-backups/
+wp-content/languages/
+
+# --- Ignore everything under wp-content by default ---
+wp-content/*
+
+# --- ALLOWLIST custom code you want to track ---
+!wp-content/themes/
+!wp-content/plugins/
+!wp-content/mu-plugins/
+
+# keep your theme(s) – adjust the folder name(s)
+!wp-content/themes/devonswimming/**
+
+# keep custom plugins (edit to your plugin names or prefixes)
+!wp-content/plugins/devonswimming-*/**
+!wp-content/mu-plugins/**
+
+# --- Dependencies / OS / IDE ---
+node_modules/
+vendor/
+.DS_Store
+Thumbs.db
+*.log

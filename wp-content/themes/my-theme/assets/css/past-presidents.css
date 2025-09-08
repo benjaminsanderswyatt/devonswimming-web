@@ -1,0 +1,154 @@
+
+.presidents-header {
+    display: flex;
+    gap: 1rem;
+}
+.presidents-header label {
+    font-size: .875rem;
+    color: #5b5f64;
+    display: block;
+}
+.presidents-jump,
+.presidents-filter {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.presidents-jump select,
+.presidents-filter input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+}
+
+/* Section wrapper */
+.presidents {
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+}
+
+/* Decade heading */
+.presidents-decade {
+    padding: 4px 8px;
+    border-bottom: 1px solid var(--color-border);
+    font-size: 0.9rem;
+    color: #5b5f64;
+}
+
+/* Lists */
+.presidents-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Row */
+.president-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 8px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    background: white;
+}
+
+
+/* Avatar */
+.avatar {
+    flex: 0 0 auto;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-primary-20p);
+    border: 1px solid var(--color-primary-20p);
+}
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Initials fallback */
+.avatar--initials {
+    font-weight: 700;
+    font-size: .95rem;
+    color: var(--color-primary);
+    background: #f0f4ff;
+    position: relative;
+}
+.avatar--initials::after {
+    content: attr(data-initials);
+    letter-spacing: .02em;
+}
+
+/* Meta */
+.meta {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    padding: 8px 0;
+    gap: 4px;
+}
+.meta__top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 10px;
+}
+.name { 
+    font-weight: bold; 
+}
+
+/* Chips */
+.chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+}
+.chip--years {
+    background: var(--color-primary-10p);
+    border-color: var(--color-primary-20p);
+    color: var(--color-primary);
+}
+.chip--served {
+    background: #f3f4f6;
+}
+
+/* Bio */
+.bio {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--color-text);
+}
+
+
+
+@media (max-width: 595px){
+    .president-row {
+        border-left: none;
+        border-right: none;
+        border-radius: 0;
+    }
+    .presidents-header {
+        padding: 0 8px;
+    }
+}

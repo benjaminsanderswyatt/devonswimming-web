@@ -1,0 +1,112 @@
+/* Concern Block — matches two-column + cards look & feel */
+
+.concern-block {
+  margin: 32px auto;
+  padding: 16px 0;
+}
+
+.concern-block h2 {
+  font-size: 2rem;
+  color: var(--color-text);
+  border-bottom: 1px solid var(--color-primary);
+  padding-bottom: 6px;
+  margin-bottom: 12px;
+}
+
+/* Layout mirrors two-column spacing but with grid + callout */
+.concern-columns {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 900px) {
+  .concern-columns { grid-template-columns: 1fr; }
+}
+
+/* Copy marker + indent rules you use elsewhere */
+.concern-steps { 
+  padding-left: 1.25rem; 
+  margin: 0.5rem 0 1rem 0; 
+}
+.concern-steps li::marker { font-weight: bold; }
+.concern-steps li { text-indent: 1rem; }
+.concern-steps li + li { margin-top: 0.5rem; }
+
+.concern-intro p { margin: 0 0 0.75rem 0; }
+
+/* Contact card matches card border/background */
+.contact-card {
+  margin-top: 0.75rem;
+  background: var(--color-container-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: inline-block;
+}
+.contact-name { font-weight: 700; margin: 0 0 4px 0; }
+.small-print { font-size: 0.95rem; opacity: 0.9; }
+
+.contact-list {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin: 0.75rem 0 0 0;
+}
+.contact-list li + li { margin-top: 0.25rem; }
+
+/* Referral button spacing — reuses .link-button */
+.referral-link .link-button { margin-top: 8px; }
+
+/* Emergency callout fits your palette */
+.emergency {
+  --callout-bg: rgba(255, 230, 0, 0.12);
+  --callout-border: #f0c200;
+  background: var(--callout-bg);
+  border: 1px solid var(--callout-border);
+  border-radius: 10px;
+  padding: 14px;
+  align-self: start;
+}
+.emergency h3 {
+  color: var(--color-text);
+  margin: 0 0 6px 0;
+}
+.emergency-list {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin: 0.5rem 0 0 0;
+}
+.emergency-list li + li { margin-top: 0.25rem; }
+
+/* Links + focus states consistent with buttons/cards */
+.concern-block a:focus-visible,
+.concern-block .link-button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .link-button { transition: none; }
+}
+
+
+/* Keep existing styles; add these bits for the new structure */
+
+/* Card inset under a numbered step */
+.concern-steps .list-inset {
+  margin-top: 8px;
+}
+
+/* Grouped contacts: "Label" with nested list of ways to contact */
+.contact-list.grouped > li { margin-bottom: 0.5rem; }
+.sub-contact-list {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin: 0.25rem 0 0 0;
+}
+.sub-contact-list li + li { margin-top: 0.25rem; }
+
+.inline-tip { margin-top: 6px; }
+.inline-tip .inline-anchor { font-size: 0.95rem; text-decoration: underline; }

@@ -1,0 +1,186 @@
+
+
+/*--------- Post Holder ---------*/
+.main-content-area {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+
+
+
+/*--------- Post Card ---------*/
+.main-content-area article {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--color-container-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  /*box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);*/
+  overflow: hidden;
+  padding: 20px;
+}
+
+
+@media (max-width: 595px){
+  .main-content-area article {
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+  }
+}
+
+
+/*--------- Featured image ---------*/
+.post-featured-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.post-featured-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease-in-out;
+  will-change: transform;
+  clip-path: inset(0 round 4px);
+}
+
+.post-featured-image img:hover {
+  transform: scale(1.05);
+}
+
+
+
+/*--------- Post Content Area ---------*/
+.post-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+
+
+/*--------- Post Header ---------*/
+.post-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+
+/*--------- Post Title ---------*/
+.post-title {
+  font-size: 1.75rem;
+  font-weight: normal;
+  border-bottom: 1px solid var(--color-primary);
+  color: var(--color-secondary);
+  line-height: normal;
+}
+
+.post-title a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+/*--------- Post Meta ---------*/
+.post-meta {
+  font-size: 0.875rem;
+  color: var(--color-secondary);
+}
+
+
+
+
+
+/*--------- Post Excerpt ---------*/
+.post-excerpt-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/*--------- Post Excerpt Text ---------*/
+.post-excerpt {
+  color: var(--color-text);
+  font-size: 1rem;
+}
+
+
+
+
+/*--------- Post Read More ---------*/
+.read-more {
+  align-self: flex-end;
+  text-decoration: none;
+  color: var(--color-secondary);
+  font-size: 0.875rem;
+  padding: 8px;
+  background: var(--color-primary-10p);
+  border-radius: 8px;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.read-more:hover,
+.read-more:focus{
+  background: var(--color-primary-20p);
+  transform: translateY(-1px);
+}
+
+
+
+
+
+
+
+
+
+
+
+/*--------- Infinite Scroll ---------*/
+.infinite-scroll-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px;
+  font-size: 1rem;
+  color: var(--color-secondary);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.infinite-scroll-status.is-visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+.infinite-scroll-status.is-end{
+  margin-top: 24px;
+}
+
+/* Spinner */
+.infinite-scroll-status::before {
+  content: "";
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid var(--color-secondary);
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.infinite-scroll-status.is-end::before {
+  display: none; /* Hide spinner when at end */
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

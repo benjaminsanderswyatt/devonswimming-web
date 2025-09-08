@@ -1,0 +1,220 @@
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    align-items: stretch; /* Ensures all cards stretch to match row height */
+}
+
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    padding: 0 0.5rem;
+  }
+}
+
+
+
+.item-block-link-wrapper {
+    text-decoration: none; /* Remove underline for links */
+    color: inherit;        /* Inherit text color */
+    display: block;        /* Make link behave like a block element */
+}
+
+/* Base card styles */
+.item-block {
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    gap: 8px;
+    justify-content: space-between; /* Push content apart */
+    background: var(--color-container-bg);
+    border-radius: 10px;
+    align-items: center;
+    text-align: center;
+    height: 100%; /* Equal height cards */
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    border: 1px solid; /* Default border, color set below */
+    position: relative; /* Needed for absolute icon positioning */
+    padding: 8px;
+    border-color: var(--color-border);
+}
+
+/* Border color for linked cards */
+.item-block-link-wrapper.has-link .item-block {
+    
+}
+
+/* Border color for non-linked cards */
+.item-block-link-wrapper.no-link .item-block {
+    border-color: var(--color-border);
+}
+
+/* Hover effect only on linked cards */
+.item-block-link-wrapper.has-link:hover .item-block {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    border-color: var(--color-primary);
+}
+
+
+
+.item-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-border);
+}
+
+/* Contain (upscales if needed) */
+.item-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;     /* keep full image visible */
+  object-position: center;
+  display: block;
+}
+
+/* Cover (for photos you want full-bleed) */
+.item-media.cover img {
+  object-fit: cover;
+}
+
+
+
+
+
+/* Card title */
+.item-block h1 {
+    font-size: 1.25rem;
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-weight: normal;
+    color: var(--color-secondary);
+    align-content: center;
+    margin-bottom: auto;
+}
+
+.committee-panel .item-block h1 { /* Only line on committee page */
+    border-bottom: 1px solid var(--color-primary);
+}
+
+
+
+/* Card text */
+.item-block p {
+    flex-grow: 1; /* Fill available space */
+}
+
+/* Globe icon top-left */
+.item-block-icon {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    padding: 4px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(4px);
+}
+
+.item-block-icon img {
+    position: static;
+    width: 18px;
+    height: 18px;
+    display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.item-email {
+    position: relative;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+.item-email img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.2s ease;
+    margin: 0;
+}
+
+.item-email:hover img{
+    transform: scale(1.1);
+}
+
+
+
+
+
+
+
+/* Base (hidden) state */
+.tooltip-copied {
+    position: absolute;
+    bottom: 120%; /* above the icon */
+    left: 50%;
+    transform: translateX(-50%) translateY(6px); /* start slightly lower */
+    transform-origin: bottom center;
+    padding: 6px 10px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    background: var(--color-primary);
+    color: white;
+    border-radius: 6px;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition:
+        opacity 200ms ease,
+        transform 200ms ease;
+    z-index: 20;
+}
+
+.tooltip-copied::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: var(--color-primary);
+}
+
+/* Visible state (fade + lift) */
+.tooltip-copied.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .tooltip-copied {
+        transition: none;
+    }
+}

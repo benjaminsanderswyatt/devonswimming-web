@@ -1,0 +1,28 @@
+.wpd-right-corner {
+  z-index: 1000 !important;
+}
+
+#comments.comments-area {
+    margin: 0;
+    max-width: var(--spacing-container);
+}
+
+
+
+
+#wpdcom.wpd-layout-3 {
+    width: 100%;
+    margin: 0;
+    max-width: 100%;
+    padding: 0 20px;
+}
+
+#wpd-bubble-wrapper.wpd-right-corner {
+
+}
+
+@media (max-width: 600px) { /* overrides default */
+    #wpd-bubble-wrapper.wpd-right-corner {
+        bottom: 80px;
+    }
+}

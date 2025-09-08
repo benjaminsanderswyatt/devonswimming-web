@@ -1,0 +1,168 @@
+/* --- Motion tokens --- */
+:root{
+  --tab-anim-duration: 220ms;
+  --tab-anim-ease: cubic-bezier(.2, 0, 0, 1);
+}
+
+
+
+
+.tab-grid-layout{
+  display: grid;
+  gap: var(--gutter);
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "sidebar"
+    "main";
+}
+
+/* Areas */
+.tab-grid-sidebar{ 
+  grid-area: sidebar;
+  gap: 12px;
+}
+.tab-grid-panels{  
+  grid-area: main;
+}
+
+/* Reduce-motion users: skip fancy transitions */
+@media (prefers-reduced-motion: reduce){
+  .tab-grid-panel,
+  .tab-grid-tab{
+    transition: none !important;
+  }
+}
+
+/* Desktop: fixed left sidebar width (reuse front-page tokens) */
+@media (min-width: 992px){
+  .tab-grid-layout{
+    grid-template-columns: var(--sidebar-left-desktop) 1fr;
+    grid-template-areas: "sidebar main";
+    align-items: start;
+  }
+}
+
+/* --- Sidebar tabs look & feel (vertical buttons) --- */
+.tab-grid-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gutter)*0.5);
+  padding: 0 16px;
+  width: 100%;
+}
+
+
+/* Buttons mimic header nav/focus & theme tokens */
+.tab-grid-tab{
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+
+  border: 1px solid var(--color-primary-20p);
+  background: rgba(255,255,255,.75);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  color: var(--color-text);
+
+  padding: 10px 12px;
+  border-radius: 8px; /* match nav-menu links */
+  font-size: 1rem;
+  line-height: 1.2;
+
+  transition: background-color .2s ease, box-shadow .2s ease, transform .1s ease, color .2s ease, border-color .2s ease;
+}
+
+/* Hover */
+.tab-grid-tab:hover{
+  background: var(--color-primary-20p);
+}
+
+/* Active */
+.tab-grid-tab.is-active{
+  background-color: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+
+/* Keyboard focus ring (matches menu toggle) */
+.tab-grid-tab:focus-visible{
+  outline: 3px solid transparent;
+  box-shadow:
+    0 0 0 3px var(--color-primary-20p),
+    0 0 0 6px var(--color-primary);
+}
+
+/* Pressed feedback */
+.tab-grid-tab:active{
+  transform: translateY(1px);
+}
+
+/* Panels (unchanged from your JS toggling) */
+.tab-grid-panel{ display: none; }
+.tab-grid-panel.is-active{ display: block; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Horizontal tabs that can wrap onto multiple lines */
+@media (max-width: 992px){
+  .tab-grid-tabs{
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: calc(var(--gutter)*0.5);
+  }
+
+  .tab-grid-tab{
+    flex: 1 1 calc(50% - var(--gutter)*0.25); /* two equal tabs per row */
+    min-width: 0;
+    text-align: center;
+    white-space: wrap;
+  }
+}
+
+
+
+
+
+
+
+.tab-grid-empty{
+  border: 1px solid var(--color-primary-20p);
+  background: var(--color-container-bg);
+  opacity: 0.8;
+  border-radius: 8px;
+  padding: 16px;
+}
+.tab-grid-empty_title{
+  font-weight: bold;
+}
+
+@media (max-width: 595px){
+  .tab-grid-empty{
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+}
+
+

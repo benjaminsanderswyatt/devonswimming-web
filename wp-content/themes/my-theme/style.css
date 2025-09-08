@@ -1,0 +1,116 @@
+/*
+Theme Name: Devon Swimming
+Theme URI: https://www.devonswimming.org.uk/
+Author: BSW
+Description: Custom theme for Devon Swimming
+Version: 1.0
+Text Domain: devon-swimming
+*/
+
+:root {
+    /* Color Variables */
+    --color-bg: #F7F3F3; /* Old: F4F4F6*/
+    --color-text: #343A40;
+
+    --color-primary: #0077B6;
+    --color-primary-10p: #E6F2F8;
+    --color-primary-20p: #CCE4F0;
+    --color-primary-30p: #b3d7ea;
+    --color-primary-40p: #99c9e2;
+    --color-primary-50p: #80bbdb;
+    --color-primary-60p: #66add3;
+    --color-primary-70p: #4da0cc;
+    --color-primary-80p: #3392c5;
+    --color-primary-90p: #1a85be;
+    --color-secondary: #393185;
+
+
+    --color-header-bg: white;
+
+    --color-border: #D6D6D6;
+    --color-container-bg: white;
+    
+
+
+
+
+
+
+    /* Spacing Variables */
+    --border-radius: 8px;
+
+    --spacing-container: 1200px;
+    --spacing-gap: 22px;
+    --spacing-post: 20px;
+}
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Helvetica, Arial, sans-serif;
+    
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+}
+
+
+.site-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    padding: 20px;
+
+    max-width: min(var(--content-max), calc(100% - 2*var(--gutter)));
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+    padding-block: var(--gutter);
+    width: 100%;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-container-bg);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--color-border);
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    align-items: center;
+}
+
+@media (max-width: 595px){
+  .site-main{
+    padding-inline: 0;
+    max-width: 100%;
+  }
+
+  .container {
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+  }
+}
+
+
+.error-404 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+
