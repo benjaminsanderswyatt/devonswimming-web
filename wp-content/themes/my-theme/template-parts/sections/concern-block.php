@@ -140,7 +140,7 @@ $has_em       = $em_heading || $em_intro || !empty($em_items) || $em_aftercare;
 if (!$heading && !$intro && !$has_steps && !$has_contacts && !$has_em) return;
 ?>
 
-<section class="concern-block safeguard-block" aria-labelledby="concern-heading<?php echo esc_attr($version); ?>">
+<div class="concern-block safeguard-block" aria-labelledby="concern-heading<?php echo esc_attr($version); ?>">
     <?php if ($heading): ?>
         <h2 id="concern-heading<?php echo esc_attr($version); ?>"><?php echo esc_html($heading); ?></h2>
     <?php endif; ?>
@@ -213,4 +213,4 @@ if (!$heading && !$intro && !$has_steps && !$has_contacts && !$has_em) return;
             </aside>
         <?php endif; ?>
     </div>
-</section>
+</div>
