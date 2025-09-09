@@ -99,10 +99,6 @@
     margin-bottom: auto;
 }
 
-.committee-panel .item-block h1 { /* Only line on committee page */
-    border-bottom: 1px solid var(--color-primary);
-}
-
 
 
 /* Card text */

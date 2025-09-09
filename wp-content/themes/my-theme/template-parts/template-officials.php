@@ -19,7 +19,7 @@ get_header();
   );
   ?>
 
-  <section class="committee-panel">
+  <section>
     <?php get_template_part('template-parts/grids/cards-grid', null); ?>
   </section>
 

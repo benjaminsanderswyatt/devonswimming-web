@@ -35,11 +35,9 @@ get_header();
         ?>
     </section>
 
-    <section id="welfare-officer" class="committee-panel">
+    <section id="welfare-officer">
         <?php get_template_part('template-parts/grids/cards-grid', null); ?>
     </section>
-
-
 
 
 </div>

@@ -1,112 +1,214 @@
-/* Concern Block — matches two-column + cards look & feel */
-
+/* =========================================
+   Concern Block — Flex, no margins (no CSS vars)
+   ========================================= */
 .concern-block {
-  margin: 32px auto;
-  padding: 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 
-.concern-block h2 {
-  font-size: 2rem;
-  color: var(--color-text);
-  border-bottom: 1px solid var(--color-primary);
-  padding-bottom: 6px;
-  margin-bottom: 12px;
+/* Reset margins inside; spacing is via gap/padding */
+.concern-block :is(h2, h3, p, ul, ol, li) { margin: 0; }
+
+/* Headings */
+.concern-block h2,
+.concern-block h3 {
+  line-height: 1.2;
+  font-weight: 700;
 }
 
-/* Layout mirrors two-column spacing but with grid + callout */
-.concern-columns {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 20px;
+/* Columns */
+.concern-block .concern-columns {
+  display: flex;
+  gap: clamp(.875rem, 2vw, 1.25rem);
+  align-items: flex-start;
+  flex-wrap: wrap; /* collapse to one column on small screens */
+}
+
+/* Left column flexes; emergency column sizes to content width */
+.concern-block .concern-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  flex: 1 1 20rem;
+  min-width: 0;
+}
+
+/* Emergency aside */
+.concern-block .concern-col.emergency {
+  flex: 0 1 min(28rem, 38%);
+  background: color-mix(in srgb, #c62828 6%, transparent);
+  border: 1px solid color-mix(in srgb, #c62828 18%, rgba(0,0,0,.08));
+  border-radius: 10px; /* 16 - 6 */
+  padding: 1rem;
+  gap: .75rem;
+  position: sticky;
+  top: 1.25rem;
 }
 
 @media (max-width: 900px) {
-  .concern-columns { grid-template-columns: 1fr; }
+  .concern-block .concern-col.emergency {
+    position: static;
+    flex: 1 1 100%;
+  }
 }
 
-/* Copy marker + indent rules you use elsewhere */
-.concern-steps { 
-  padding-left: 1.25rem; 
-  margin: 0.5rem 0 1rem 0; 
+.concern-block .concern-col.emergency h3 {
+  color: color-mix(in srgb, #c62828 80%, #000);
 }
-.concern-steps li::marker { font-weight: bold; }
-.concern-steps li { text-indent: 1rem; }
-.concern-steps li + li { margin-top: 0.5rem; }
 
-.concern-intro p { margin: 0 0 0.75rem 0; }
+/* Intro text */
+.concern-block .concern-intro { color: #5b5b5b; }
 
-/* Contact card matches card border/background */
-.contact-card {
-  margin-top: 0.75rem;
-  background: var(--color-container-bg);
-  border: 1px solid var(--color-border);
+/* Steps */
+.concern-block .concern-steps {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  counter-reset: step;
+}
+
+.concern-block .concern-steps > li {
+  counter-increment: step;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  padding: .875rem .875rem .875rem 3rem;
+  border: 1px solid rgba(0,0,0,.08);
   border-radius: 10px;
-  padding: 12px 14px;
-  display: inline-block;
-}
-.contact-name { font-weight: 700; margin: 0 0 4px 0; }
-.small-print { font-size: 0.95rem; opacity: 0.9; }
-
-.contact-list {
-  list-style: disc;
-  padding-left: 1.25rem;
-  margin: 0.75rem 0 0 0;
-}
-.contact-list li + li { margin-top: 0.25rem; }
-
-/* Referral button spacing — reuses .link-button */
-.referral-link .link-button { margin-top: 8px; }
-
-/* Emergency callout fits your palette */
-.emergency {
-  --callout-bg: rgba(255, 230, 0, 0.12);
-  --callout-border: #f0c200;
-  background: var(--callout-bg);
-  border: 1px solid var(--callout-border);
-  border-radius: 10px;
-  padding: 14px;
-  align-self: start;
-}
-.emergency h3 {
-  color: var(--color-text);
-  margin: 0 0 6px 0;
-}
-.emergency-list {
-  list-style: disc;
-  padding-left: 1.25rem;
-  margin: 0.5rem 0 0 0;
-}
-.emergency-list li + li { margin-top: 0.25rem; }
-
-/* Links + focus states consistent with buttons/cards */
-.concern-block a:focus-visible,
-.concern-block .link-button:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
-  border-radius: 6px;
+  background: color-mix(in srgb, #0b6bcb 6%, transparent);
 }
 
-/* Respect reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .link-button { transition: none; }
+.concern-block .concern-steps > li::before {
+  content: counter(step);
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: .75rem;
+  transform: translateY(-50%);
+  inline-size: 1.75rem;
+  block-size: 1.75rem;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: #0b6bcb;
+  color: #fff;
+  font-weight: 600;
+  font-size: .9rem;
+  line-height: 1;
 }
 
-
-/* Keep existing styles; add these bits for the new structure */
-
-/* Card inset under a numbered step */
-.concern-steps .list-inset {
-  margin-top: 8px;
+/* Inline anchor inside steps */
+.concern-block .inline-tip { display: inline-flex; }
+.concern-block .inline-tip .inline-anchor {
+  display: inline-flex;
+  align-items: center;
+  gap: .4ch;
+  font-weight: 600;
+  text-decoration: none;
+  color: #0b6bcb;
+  border-bottom: 1px solid color-mix(in srgb, #0b6bcb 35%, transparent);
+  padding-block-end: 1px;
+  transition: border-color .2s ease, color .2s ease, transform .2s ease;
+}
+.concern-block .inline-tip .inline-anchor:hover {
+  color: color-mix(in srgb, #0b6bcb 85%, #000);
+  border-color: currentColor;
+  transform: translateY(-1px);
 }
 
-/* Grouped contacts: "Label" with nested list of ways to contact */
-.contact-list.grouped > li { margin-bottom: 0.5rem; }
-.sub-contact-list {
-  list-style: disc;
-  padding-left: 1.25rem;
-  margin: 0.25rem 0 0 0;
-}
-.sub-contact-list li + li { margin-top: 0.25rem; }
+/* ================================
+   Safeguarding team / Org Contacts
+   ================================ */
 
-.inline-tip { margin-top: 6px; }
-.inline-tip .inline-anchor { font-size: 0.95rem; text-decoration: underline; }
+/* Flex row that WRAPS */
+.concern-block .contact-list.flat {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;         /* wraps by default */
+  align-items: center;
+  justify-content: flex-start;
+  gap: .5rem;
+}
+
+.concern-block .contact-list.flat li { display: flex; }
+
+/* Uniform-color chips (no icons) */
+.concern-block .contact-list.flat li > a {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .55rem .9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.08);
+  background: color-mix(in srgb, #0b6bcb 8%, #fff); /* same color for all */
+  color: #111;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: transform .12s ease, border-color .12s ease, background-color .12s ease;
+}
+.concern-block .contact-list.flat li > a:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, #0b6bcb 35%, rgba(0,0,0,.08));
+}
+.concern-block .contact-list.flat li > a:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px color-mix(in srgb, #0b6bcb 25%, transparent);
+}
+
+/* Stretch chips to share the row evenly */
+.concern-block .contact-list.flat.stretch li { flex: 1 1 0; }
+.concern-block .contact-list.flat.stretch li > a {
+  width: 100%;
+  justify-content: center;
+}
+
+/* ================================
+   Emergency list (white cards)
+   ================================ */
+.concern-block .emergency-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.concern-block .emergency-list li {
+  display: flex;
+  align-items: center;
+  gap: .5ch;
+  padding: .5rem .75rem;
+  border-radius: .5rem;
+  background: #fff; /* white card area */
+  border: 1px solid color-mix(in srgb, #c62828 16%, rgba(0,0,0,.08));
+}
+
+.concern-block .emergency-list a {
+  color: color-mix(in srgb, #c62828 82%, #000);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px dashed currentColor;
+}
+.concern-block .emergency-list a:hover { border-bottom-style: solid; }
+
+/* ================================
+   Print
+   ================================ */
+@media print {
+  .concern-block {
+    border: 0;
+    box-shadow: none;
+    background: transparent;
+    padding: 0;
+  }
+  .concern-block .concern-col.emergency {
+    background: transparent;
+    border: 0;
+    position: static;
+  }
+}
