@@ -46,6 +46,7 @@ function my_theme_enqueue_files()
     wp_enqueue_style('my-theme-about-us-style', get_template_directory_uri() . '/assets/css/about-us.css', [], null);
     wp_enqueue_style('my-theme-officials-style', get_template_directory_uri() . '/assets/css/officials.css', [], null);
     wp_enqueue_style('my-theme-safeguarding-welfare-style', get_template_directory_uri() . '/assets/css/safeguarding-welfare.css', [], null);
+    wp_enqueue_style('my-theme-funding-support-style', get_template_directory_uri() . '/assets/css/funding-support.css', [], null);
 
 
 

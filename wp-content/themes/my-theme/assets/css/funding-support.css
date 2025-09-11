@@ -1,0 +1,149 @@
+/* =========================
+   Funding — blocks & shared
+   ========================= */
+.funding-intro { color: var(--color-text); }
+
+.funding-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.funding-block h2 {
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.funding-copy,
+.funding-note { color: var(--color-text); }
+
+/* chips for rates + CTAs */
+.rate-chips,
+.funding-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+}
+
+.rate-chips li { display: flex; }
+
+/* Base chip (neutral, non-clickable like rates) */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: var(--color-container-bg);
+  color: var(--color-text);
+  text-decoration: none;
+  white-space: nowrap;
+  font-size: 0.95rem;
+  transition: none;
+  cursor: default;
+}
+
+/* Clickable chips (anchors only): underline + hover */
+a.chip {
+  background: var(--color-primary-10p);
+  border-color: var(--color-primary-60p);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+  transition: transform 0.12s ease, border-color 0.12s ease, background-color 0.12s ease;
+}
+
+a.chip:hover {
+  transform: translateY(-1px);
+  border-color: var(--color-primary);
+  text-decoration-thickness: 2px;
+}
+
+a.chip:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Ensure rate chips stay neutral even if moved */
+.rate-chips .chip {
+  background: var(--color-container-bg);
+  border-color: var(--color-border);
+  cursor: default;
+}
+
+/* numbered steps */
+.funding-steps {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  counter-reset: step;
+}
+
+.funding-steps > li {
+  counter-increment: step;
+  position: relative;
+  display: flex;
+  padding: 0.75rem 0.75rem 0.75rem 2.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: var(--color-container-bg);
+  color: var(--color-text);
+}
+
+.funding-steps > li::before {
+  content: counter(step);
+  position: absolute;
+  top: 50%;
+  left: 0.75rem;
+  transform: translateY(-50%);
+  width: 1.6rem;
+  height: 1.6rem;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+/* deadline callout */
+.deadline-callout {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.9rem;
+  border: 1px dashed var(--color-secondary);
+  border-radius: 10px;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* two-up row (county + regional) */
+.fr-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(0.875rem, 2vw, 1.25rem);
+  align-items: stretch;
+}
+
+.fr-row > .fr-item {
+  flex: 1 1 28rem;
+  display: flex;
+}
+
+.fr-row > .fr-item.container { margin: 0; max-width: none; }
+
+.fr-row > .fr-item > .container-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
