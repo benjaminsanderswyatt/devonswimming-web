@@ -158,7 +158,8 @@
   background: var(--color-primary-10p);
   color: var(--color-text);
   text-decoration: none;
-  white-space: nowrap;
+  white-space: wrap;
+  overflow-wrap: anywhere;
   transition: transform 0.12s ease, border-color 0.12s ease, background-color 0.12s ease;
 }
 
@@ -201,6 +202,7 @@
   border-radius: 0.5rem;
   background: var(--color-container-bg);
   border: 1px solid var(--color-border);
+  flex-wrap: wrap;
 }
 
 .concern-block .emergency-list a {
@@ -282,6 +284,7 @@
   width: 100%;
   justify-content: center;
   flex-wrap: wrap;
+  overflow-wrap: anywhere;
   transition: transform 0.12s ease, border-color 0.12s ease;
 }
 
@@ -420,7 +423,8 @@
   background: var(--color-primary-10p);
   color: var(--color-text);
   text-decoration: none;
-  white-space: nowrap;
+  white-space: wrap;
+  overflow-wrap: anywhere;
   transition: transform 0.12s ease, border-color 0.12s ease;
   font-size: 0.9rem;
 }

@@ -54,6 +54,7 @@ a.chip {
   text-decoration: underline;
   text-underline-offset: 2px;
   text-decoration-thickness: 1px;
+  text-wrap-mode: wrap;
   transition: transform 0.12s ease, border-color 0.12s ease, background-color 0.12s ease;
 }
 
@@ -94,6 +95,8 @@ a.chip:focus-visible {
   border-radius: 10px;
   background: var(--color-container-bg);
   color: var(--color-text);
+  overflow: hidden;
+  overflow-wrap: anywhere;
 }
 
 .funding-steps > li::before {
@@ -124,6 +127,7 @@ a.chip:focus-visible {
   border-radius: 10px;
   background: var(--color-bg);
   color: var(--color-text);
+  flex-wrap: wrap;
 }
 
 /* two-up row (county + regional) */
