@@ -195,19 +195,19 @@ if (!empty($groups)) {
                   if ($is_current):
                 ?>
                   <?php if (is_numeric($p['start'])): ?>
-                    <span class="chip chip--years"><?php echo esc_html((string) $p['start']); ?></span>
+                    <span class="chip-predisent chip--years"><?php echo esc_html((string) $p['start']); ?></span>
                   <?php endif; ?>
-                  <span class="chip chip--years chip--current"><?php echo esc_html__('Current', 'devon-swimming'); ?></span>
+                  <span class="chip-predisent chip--years chip--current"><?php echo esc_html__('Current', 'devon-swimming'); ?></span>
                 <?php else: ?>
                   <?php if (is_numeric($p['start']) && is_numeric($p['end'])): ?>
-                    <span class="chip chip--years"><?php echo esc_html($p['start'] . '-' . $p['end']); ?></span>
+                    <span class="chip-predisent chip--years"><?php echo esc_html($p['start'] . '-' . $p['end']); ?></span>
                   <?php elseif (is_numeric($p['start'])): ?>
-                    <span class="chip chip--years"><?php echo esc_html((string) $p['start']); ?></span>
+                    <span class="chip-predisent chip--years"><?php echo esc_html((string) $p['start']); ?></span>
                   <?php endif; ?>
                 <?php endif; ?>
 
                 <?php if (!is_null($p['served'])): ?>
-                  <span class="chip chip--served">
+                  <span class="chip-predisent chip--served">
                     <?php echo esc_html($p['served']); ?>
                     <?php echo $p['served'] === 1
                       ? esc_html__('year', 'devon-swimming')
