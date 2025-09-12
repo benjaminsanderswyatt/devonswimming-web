@@ -197,9 +197,40 @@ function devon_get_social_svg($url)
     return $svg;
 }
 
+/* Return SVG by a known slug (child theme first, then parent) */
+function devon_get_social_svg_by_slug($slug) {
+    $paths = [
+        trailingslashit(get_stylesheet_directory()) . 'assets/icons/links/' . $slug . '.svg',
+        trailingslashit(get_template_directory())   . 'assets/icons/links/' . $slug . '.svg',
+    ];
+
+    $path = '';
+    foreach ($paths as $p) {
+        if (file_exists($p)) { $path = $p; break; }
+    }
+    if (!$path) return '';
+
+    // Cache by absolute path + mtime
+    $cache_key = 'devon_svg_' . md5($path . '|' . filemtime($path));
+    $svg = get_transient($cache_key);
+
+    if ($svg === false) {
+        $svg = file_get_contents($path);
+        if (!$svg) return '';
+        // Basic hardening
+        $svg = preg_replace('#<(script|foreignObject)\b.*?>.*?</\1>#is', '', $svg);
+        if (strpos($svg, 'aria-hidden') === false) {
+            $svg = preg_replace('#<svg\b#', '<svg aria-hidden="true" focusable="false"', $svg, 1);
+        }
+        set_transient($cache_key, $svg, DAY_IN_SECONDS);
+    }
+
+    return $svg;
+}
+
+
 /* Social Walker */
-class Devon_Walker_Social_Icons extends Walker_Nav_Menu
-{
+class Devon_Walker_Social_Icons extends Walker_Nav_Menu {
     public function start_el(&$output, $item, $depth = 0, $args = [], $id = 0)
     {
         $classes = implode(' ', array_map('esc_attr', (array) $item->classes));
@@ -208,14 +239,34 @@ class Devon_Walker_Social_Icons extends Walker_Nav_Menu
         $label   = '<span class="visually-hidden">' . esc_html($item->title) . '</span>';
 
         $output .= '<li class="menu-item social-item social--' . esc_attr($slug) . ' ' . $classes . '">';
-        $output .= '<a class="social-link" href="' . esc_url($item->url) . '" target="_blank" rel="me noopener noreferrer">' . $icon . $label . '</a>';
+        $output .= '<a class="social-link" href="' . esc_url($item->url) . '" target="_blank" rel="me noopener noreferrer">';
+
+        if ($slug === 'swimengland') {
+            // Large (default) + small (mobile) variants
+            $icon_large = devon_get_social_svg_by_slug('swimengland');
+            $icon_small = devon_get_social_svg_by_slug('swimengland-small');
+
+            if ($icon_small) {
+                $output .= '<span class="icon-swap">'
+                         .   '<span class="icon--large">' . $icon_large . '</span>'
+                         .   '<span class="icon--small">' . $icon_small . '</span>'
+                         . '</span>';
+            } else {
+                // Fallback if small file missing
+                $output .= $icon_large ?: $icon;
+            }
+        } else {
+            $output .= $icon;
+        }
+
+        $output .= $label . '</a>';
     }
 
-    public function end_el(&$output, $item, $depth = 0, $args = [])
-    {
+    public function end_el(&$output, $item, $depth = 0, $args = []) {
         $output .= '</li>';
     }
 }
+
 
 
 

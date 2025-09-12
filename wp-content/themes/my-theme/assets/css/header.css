@@ -618,3 +618,29 @@
   height: 32px;
   width: auto;
 }
+
+
+
+
+
+
+/* Default: show large, hide small */
+.menus-panel .nav-social li.social--swimengland .icon--small { display: none; }
+.menus-panel .nav-social li.social--swimengland .icon--large { display: inline-block; }
+
+/* Under 900px: use the small SVG */
+@media (max-width: 900px) {
+  .menus-panel .nav-social li.social--swimengland .icon--large { display: none; }
+  .menus-panel .nav-social li.social--swimengland .icon--small { display: inline-block; }
+}
+
+/* Keep existing sizing rules working for either SVG */
+.menus-panel .nav-social li.social--swimengland a.social-link {
+  height: 48px;
+  width: auto;
+  padding: 0 8px;
+}
+.menus-panel .nav-social li.social--swimengland a.social-link svg {
+  height: 32px;
+  width: auto;
+}
