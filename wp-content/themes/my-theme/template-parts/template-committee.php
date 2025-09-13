@@ -25,7 +25,7 @@ $order_tokens = array_values(array_filter(array_map(function($t){
   get_template_part('template-parts/grids/tab-grid', null, [
     'aria_label'      => 'Committees',
     'sidebar_heading' => null,
-    'active'          => 'emergency',
+    'active'          => 'management',
     'order_tokens'    => $order_tokens,
     'id_base'         => 'committees',
     'hash_cleanup'    => [
