@@ -88,7 +88,7 @@
   top: 0;
   z-index: 1000;
   background-color: var(--color-header-bg);
-  border-bottom: 3px solid var(--color-primary);
+  border-bottom: 2px solid var(--color-primary);
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -352,7 +352,7 @@
 
 /* Accessible focus */
 .menu-toggle:focus-visible {
-  outline: 3px solid transparent;
+  outline: 2px solid transparent;
   box-shadow: 0 0 0 3px var(--color-primary-20p),
               0 0 0 6px var(--color-primary);
 }
@@ -432,7 +432,7 @@
     -webkit-backdrop-filter: blur(50px);
             backdrop-filter: blur(50px);
     border-top: 2px solid var(--color-primary);
-    border-bottom: 3px solid var(--color-primary);
+    border-bottom: 2px solid var(--color-primary);
     border-radius: 0 0 8px 8px;
     padding: 8px;
     z-index: 1002;
