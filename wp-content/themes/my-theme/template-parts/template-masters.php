@@ -1,10 +1,9 @@
 <?php
 
 /**
- * Template Name: Open Water
+ * Template Name: Masters
  */
 get_header();
-
 
 /** -------- Helpers (same as Swimming) -------- */
 $g = static function (string $key): array {
@@ -22,34 +21,18 @@ $img_alt = static function ($img, string $fallback = ''): string {
     return $fallback;
 };
 
-/** -------- Fetch groups (no intro block) -------- */
-$safety = $g('ow_safety');   // ow_safety_heading, ow_safety_item_1..6
-$events = $g('ow_events');   // ow_events_heading, ow_events_text
-$ready  = $g('ow_ready');    // ow_ready_heading, ow_ready_item_1..6
-$faqs   = $g('ow_faqs');     // ow_faqs_heading, ow_faq_q_1..6, ow_faq_a_1..6
+/** -------- Fetch groups (no intro) -------- */
+$find = $g('masters_find');     // masters_find_heading, masters_find_item_1..6
+$join = $g('masters_return');   // masters_return_heading, masters_return_text
+$faqs = $g('masters_faqs');     // masters_faqs_heading, masters_faq_q_1..6, masters_faq_a_1..6
 
 /** -------- Optional images (same field names as Swimming) -------- */
 $image_1 = function_exists('get_field') ? get_field('image_1') : '';
 $image_2 = function_exists('get_field') ? get_field('image_2') : '';
 $image_3 = function_exists('get_field') ? get_field('image_3') : '';
-
-
-
-
-// Optional order parsing (if your cards-grid uses it)
-$order_str = (string) get_field('role_order');
-$order_tokens = array_values(array_filter(array_map(function ($t) {
-    $t = trim($t);
-    $t = preg_replace('/^\(contains\)\s*/i', '', $t);
-    $t = mb_strtolower($t);
-    return $t;
-}, preg_split('/[\r\n,]+/', $order_str) ?: [])));
-natcasesort($order_tokens);
-$order_tokens = array_values(array_unique($order_tokens));
-
 ?>
 
-<div class="site-main template-open-water">
+<div class="site-main template-masters">
 
     <!-- Header -->
     <?php
@@ -68,45 +51,29 @@ $order_tokens = array_values(array_unique($order_tokens));
 
 
 
-
-
-
-
-
-
-
-
-
     <?php
-    // Build card content
-    $safety_heading = $t($safety['ow_safety_heading'] ?? '');
-    $safety_items   = [];
+    // Build card content (matches Swimming structure)
+    $find_heading = $t($find['masters_find_heading'] ?? '');
+    $find_items   = [];
     for ($i = 1; $i <= 6; $i++) {
-        $val = $t($safety["ow_safety_item_$i"] ?? '');
-        if ($val !== '') $safety_items[] = $val;
+        $val = $t($find["masters_find_item_$i"] ?? '');
+        if ($val !== '') $find_items[] = $val;
     }
 
-    $events_heading = $t($events['ow_events_heading'] ?? '');
-    $events_text    = $events['ow_events_text'] ?? '';
+    $join_heading = $t($join['masters_return_heading'] ?? '');
+    $join_text    = $join['masters_return_text'] ?? '';
 
-    $ready_heading  = $t($ready['ow_ready_heading'] ?? '');
-    $ready_items    = [];
-    for ($i = 1; $i <= 6; $i++) {
-        $val = $t($ready["ow_ready_item_$i"] ?? '');
-        if ($val !== '') $ready_items[] = $val;
-    }
+    $has_any = ($find_heading || $find_items || $join_heading || $join_text || $image_1 || $image_2 || $image_3);
 
-    $has_any_cards = ($safety_heading || $safety_items || $events_heading || $events_text || $ready_heading || $ready_items || $image_1 || $image_2 || $image_3);
-
-    if ($has_any_cards): ?>
+    if ($has_any): ?>
         <div class="swim-row">
-            <?php if ($safety_heading || $safety_items): ?>
+            <?php if ($find_heading || $find_items): ?>
                 <section class="container sr-item">
                     <div class="container-content swim-card">
-                        <?php if ($safety_heading): ?><h2><?php echo esc_html($safety_heading); ?></h2><?php endif; ?>
-                        <?php if ($safety_items): ?>
+                        <?php if ($find_heading): ?><h2><?php echo esc_html($find_heading); ?></h2><?php endif; ?>
+                        <?php if ($find_items): ?>
                             <ul>
-                                <?php foreach ($safety_items as $li): ?>
+                                <?php foreach ($find_items as $li): ?>
                                     <li><?php echo esc_html($li); ?></li>
                                 <?php endforeach; ?>
                             </ul>
@@ -118,15 +85,15 @@ $order_tokens = array_values(array_unique($order_tokens));
             <?php if ($image_1): ?>
                 <figure class="sr-item swim-image">
                     <img src="<?php echo esc_url($img_src($image_1)); ?>"
-                        alt="<?php echo esc_attr($img_alt($image_1, 'Open water in Devon')); ?>">
+                        alt="<?php echo esc_attr($img_alt($image_1, 'Masters training in Devon')); ?>">
                 </figure>
             <?php endif; ?>
 
-            <?php if ($events_heading || $events_text): ?>
+            <?php if ($join_heading || $join_text): ?>
                 <section class="container sr-item">
                     <div class="container-content swim-card">
-                        <?php if ($events_heading): ?><h2><?php echo esc_html($events_heading); ?></h2><?php endif; ?>
-                        <?php if ($events_text): ?><div class="about-copy"><?php echo wp_kses_post($events_text); ?></div><?php endif; ?>
+                        <?php if ($join_heading): ?><h2><?php echo esc_html($join_heading); ?></h2><?php endif; ?>
+                        <?php if ($join_text): ?><div class="about-copy"><?php echo wp_kses_post($join_text); ?></div><?php endif; ?>
                     </div>
                 </section>
             <?php endif; ?>
@@ -134,41 +101,26 @@ $order_tokens = array_values(array_unique($order_tokens));
             <?php if ($image_2): ?>
                 <figure class="sr-item swim-image">
                     <img src="<?php echo esc_url($img_src($image_2)); ?>"
-                        alt="<?php echo esc_attr($img_alt($image_2, 'Coached open water session')); ?>">
+                        alt="<?php echo esc_attr($img_alt($image_2, 'Masters meets in Devon')); ?>">
                 </figure>
-            <?php endif; ?>
-
-            <?php if ($ready_heading || $ready_items): ?>
-                <section class="container sr-item">
-                    <div class="container-content swim-card">
-                        <?php if ($ready_heading): ?><h2><?php echo esc_html($ready_heading); ?></h2><?php endif; ?>
-                        <?php if ($ready_items): ?>
-                            <ul>
-                                <?php foreach ($ready_items as $li): ?>
-                                    <li><?php echo esc_html($li); ?></li>
-                                <?php endforeach; ?>
-                            </ul>
-                        <?php endif; ?>
-                    </div>
-                </section>
             <?php endif; ?>
 
             <?php if ($image_3): ?>
                 <figure class="sr-item swim-image">
                     <img src="<?php echo esc_url($img_src($image_3)); ?>"
-                        alt="<?php echo esc_attr($img_alt($image_3, 'Open water event')); ?>">
+                        alt="<?php echo esc_attr($img_alt($image_3, 'Masters community')); ?>">
                 </figure>
             <?php endif; ?>
         </div>
     <?php endif; ?>
 
     <?php
-    // FAQs
-    $faq_heading = $t($faqs['ow_faqs_heading'] ?? '');
+    // FAQs (same structure as Swimming)
+    $faq_heading = $t($faqs['masters_faqs_heading'] ?? '');
     $faq_pairs   = [];
     for ($i = 1; $i <= 6; $i++) {
-        $q = $t($faqs["ow_faq_q_$i"] ?? '');
-        $a = $faqs["ow_faq_a_$i"] ?? '';
+        $q = $t($faqs["masters_faq_q_$i"] ?? '');
+        $a = $faqs["masters_faq_a_$i"] ?? '';
         if ($q || $a) $faq_pairs[] = ['q' => $q, 'a' => $a];
     }
 
@@ -202,51 +154,6 @@ $order_tokens = array_values(array_unique($order_tokens));
             </div>
         </section>
     <?php endif; ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <?php
-    get_template_part('template-parts/grids/tab-grid', null, [
-        'aria_label'      => 'Open Water',
-        'sidebar_heading' => 'Trophies',
-        'active'          => 'all',
-        'order_tokens'    => $order_tokens,
-        'id_base'         => 'open-water',
-        'tabs' => [
-            ['slug' => 'all',       'label' => 'All',       'panel' => ['type' => 'cards', 'prefix' => 'all']],
-        ],
-    ]);
-    ?>
-
 
 
 

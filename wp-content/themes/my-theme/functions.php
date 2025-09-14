@@ -48,6 +48,8 @@ function my_theme_enqueue_files()
     wp_enqueue_style('my-theme-safeguarding-welfare-style', get_template_directory_uri() . '/assets/css/safeguarding-welfare.css', [], null);
     wp_enqueue_style('my-theme-funding-support-style', get_template_directory_uri() . '/assets/css/funding-support.css', [], null);
 
+    wp_enqueue_style('my-theme-swimming-style', get_template_directory_uri() . '/assets/css/swimming.css', [], null);
+
 
 
     wp_enqueue_style('my-theme-two-column-section-style', get_template_directory_uri() . '/assets/css/two-column-section.css', [], null);
