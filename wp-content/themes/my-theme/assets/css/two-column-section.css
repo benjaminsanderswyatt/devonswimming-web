@@ -46,6 +46,11 @@
     text-indent: 0;
 }
 
+.container-content li + li {
+    margin-top: 0.2rem;
+}
+
+
 .container-content ul {
     padding-left: 20px;
 }
