@@ -46,7 +46,7 @@
     text-indent: 0;
 }
 
-.container-content li + li {
+.container-content li+li {
     margin-top: 0.2rem;
 }
 
@@ -56,13 +56,10 @@
 }
 
 
-/* =========================
-   Lists inside .container-content
-   ========================= */
+/*--------- Lists inside .container-content ---------*/
 .container-content ul,
 .container-content ol {
     margin: 0;
-    /* let the parent control vertical rhythm */
     padding-inline-start: 1.25rem;
     /* room for bullets/numbers */
     color: var(--color-text);
@@ -73,12 +70,10 @@
     line-height: 1.6;
 }
 
-/* Remove stray margins from paragraphs inside list items */
 .container-content li>p {
     margin: 0;
 }
 
-/* Unordered lists: clear, on-brand bullets */
 .container-content ul {
     list-style: disc;
 }
@@ -87,7 +82,7 @@
     color: var(--color-primary);
 }
 
-/* Nested ULs: change marker shape and add a touch more indent */
+/* Nested ULs (change marker and add more indent) */
 .container-content ul ul {
     list-style: circle;
     margin-block-start: 0.375rem;
@@ -102,7 +97,7 @@
     margin-block-start: 0.375rem;
 }
 
-/* Ordered lists: bold, on-brand numbers */
+/* Ordered lists */
 .container-content ol {
     list-style: decimal;
 }
@@ -112,7 +107,7 @@
     font-weight: bold;
 }
 
-/* Links inside list items: readable underline with offset */
+/* Links inside list items */
 .container-content li a {
     color: var(--color-text);
     text-decoration: underline;

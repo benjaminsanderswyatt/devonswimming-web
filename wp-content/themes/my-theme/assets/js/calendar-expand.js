@@ -1,14 +1,12 @@
 (() => {
-  /* =========================
-     CONFIG
-  ========================== */
+  /*--------- CONFIG ---------*/
   const CONFIG = {
     WRAPPER_SELECTOR: '.ics-calendar-date-wrapper',
-    MONTH_LABEL_SELECTOR: '.ics-calendar-label',           // e.g. "August 2025"
-    TIME_SELECTOR: 'time[datetime]',                       // optional, if present
+    MONTH_LABEL_SELECTOR: '.ics-calendar-label', // e.g. August 2025
+    TIME_SELECTOR: 'time[datetime]', // optional if present
     CAL_URL: 'https://devonswimming-new.ddev.site/calendar/',
-    PARAM_KEY: 'r34icsym',                                 // YYYYMM
-    // Accept these month names (short/long, case-insensitive)
+    PARAM_KEY: 'r34icsym', // YYYYMM for url
+    // Accept these month names (short/long, case insensitive)
     MONTHS: {
       jan: 1, january: 1,
       feb: 2, february: 2,
@@ -25,9 +23,7 @@
     }
   };
 
-  /* =========================
-     HELPERS
-  ========================== */
+  /*--------- HELPERS ---------*/
   const pad2 = n => (n < 10 ? '0' + n : '' + n);
 
   const sameYearMonth = (a, b) => a && b && a.y === b.y && a.m === b.m;
@@ -37,7 +33,7 @@
     return { y: d.getFullYear(), m: d.getMonth() + 1 };
   };
 
-  // Try 1: a <time datetime="..."> somewhere in the wrapper
+
   const ymFromTime = (wrapper) => {
     const t = wrapper.querySelector(CONFIG.TIME_SELECTOR);
     if (!t) return null;
@@ -48,9 +44,9 @@
     return { y: d.getFullYear(), m: d.getMonth() + 1 };
   };
 
-  // Find the nearest previous ".ics-calendar-label" (e.g., "August 2025")
+  // Find the nearest previous ".ics-calendar-label" (e.g. August 2025)
   const findPrevMonthLabel = (wrapper) => {
-    // Climb to a logical list container boundary
+
     let p = wrapper.parentElement;
     // Stop climbing at the calendar root or document
     while (p && !p.classList.contains('ics-calendar') && !p.classList.contains('ics-calendar-list-wrapper')) {
@@ -65,7 +61,7 @@
       if (node.matches(CONFIG.MONTH_LABEL_SELECTOR)) return node;
       node = node.previousElementSibling;
     }
-    // As a fallback, look upward then scan backwards across siblings of that parent
+    // Fallback look upward then scan backwards across siblings of that parent
     if (p) {
       node = p.previousElementSibling;
       while (node) {
@@ -76,7 +72,7 @@
     return null;
   };
 
-  // Parse "August 2025" (or "Aug 2025") → {y:2025, m:8}
+  // Parse August 2025 (or "Aug 2025") to {y:2025, m:8}
   const ymFromLabelText = (text) => {
     if (!text) return null;
     const m = text.trim().match(/([A-Za-z]+)\s+(\d{4})/);
@@ -102,7 +98,7 @@
   const buildMonthUrl = ({ y, m }) => {
     const now = getCurrentYM();
     if (sameYearMonth({ y, m }, now)) {
-      // current month: plain calendar URL (no param)
+      // Current month plain calendar URL (no param)
       return CONFIG.CAL_URL;
     }
     return CONFIG.CAL_URL + '?' + CONFIG.PARAM_KEY + '=' + y + pad2(m);
@@ -117,13 +113,11 @@
     window.location.href = url;
   };
 
-  // Don’t hijack real links inside
+  // Dont hijack real links inside
   const clickIsOnInteractive = (e) =>
     !!e.target.closest('a, button, input, textarea, select, [role="button"]');
 
-  /* =========================
-     BINDINGS
-  ========================== */
+  /*--------- Bindings ---------*/
   const installWrapper = (wrapper) => {
     if (wrapper._navBound) return;
     wrapper._navBound = true;
@@ -133,9 +127,9 @@
     if (!wrapper.hasAttribute('tabindex')) wrapper.setAttribute('tabindex', '0');
     wrapper.style.cursor = 'pointer';
 
-    // Click → go to month
+    // Click go to month
     wrapper.addEventListener('click', (e) => {
-      if (clickIsOnInteractive(e)) return; // let native links/buttons work
+      if (clickIsOnInteractive(e)) return; // Let native links/buttons work
       const ym = getYearMonthForWrapper(wrapper);
       const url = buildMonthUrl(ym);
       e.preventDefault();

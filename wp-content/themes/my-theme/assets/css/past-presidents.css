@@ -1,13 +1,14 @@
-
 .presidents-header {
     display: flex;
     gap: 1rem;
 }
+
 .presidents-header label {
     font-size: .875rem;
     color: #5b5f64;
     display: block;
 }
+
 .presidents-jump,
 .presidents-filter {
     flex: 1 1 0;
@@ -15,6 +16,7 @@
     flex-direction: column;
     gap: 8px;
 }
+
 .presidents-jump select,
 .presidents-filter input {
     width: 100%;
@@ -75,6 +77,7 @@
     background: var(--color-primary-20p);
     border: 1px solid var(--color-primary-20p);
 }
+
 .avatar img {
     width: 100%;
     height: 100%;
@@ -90,6 +93,7 @@
     background: #f0f4ff;
     position: relative;
 }
+
 .avatar--initials::after {
     content: attr(data-initials);
     letter-spacing: .02em;
@@ -103,14 +107,16 @@
     padding: 8px 0;
     gap: 4px;
 }
+
 .meta__top {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 4px 10px;
 }
-.name { 
-    font-weight: bold; 
+
+.name {
+    font-weight: bold;
 }
 
 /* Chips */
@@ -123,11 +129,13 @@
     border: 1px solid var(--color-border);
     color: var(--color-text);
 }
+
 .chip--years {
     background: var(--color-primary-10p);
     border-color: var(--color-primary-20p);
     color: var(--color-primary);
 }
+
 .chip--served {
     background: #f3f4f6;
 }
@@ -142,12 +150,13 @@
 
 
 
-@media (max-width: 595px){
+@media (max-width: 595px) {
     .president-row {
         border-left: none;
         border-right: none;
         border-radius: 0;
     }
+
     .presidents-header {
         padding: 0 8px;
     }

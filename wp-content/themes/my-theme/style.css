@@ -9,8 +9,8 @@ Text Domain: devon-swimming
 
 :root {
   /* Color Variables */
-  --color-bg: #F7F3F3;
-  /* Old: F4F4F6*/
+  --color-bg: #F0F0F1;
+  /* Old: F4F4F6, F7F3F3*/
   --color-text: #343A40;
 
   --color-primary: #0077B6;
@@ -28,7 +28,8 @@ Text Domain: devon-swimming
 
   --color-header-bg: white;
 
-  --color-border: #D6D6D6;
+  --color-border: #c3c4c7;
+  /* Old: D6D6D6*/
   --color-container-bg: white;
 
   --color-danger: #C62828;

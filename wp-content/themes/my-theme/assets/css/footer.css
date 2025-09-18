@@ -1,5 +1,3 @@
-
-
 footer {
     width: 100%;
     height: fit-content;
@@ -16,20 +14,21 @@ footer {
     width: 100%;
     height: clamp(50px, 10vw, 100px);
     background-repeat: no-repeat;
-    background-size: 100% 100%; /* Stretch to fill */
+    background-size: 100% 100%;
+    /* Stretch to fill */
     position: relative;
     z-index: 990;
 }
 
 .footer-waves::after {
-  content: "";
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background-color: var(--color-primary);
-  z-index: 991;
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-primary);
+    z-index: 991;
 }
 
 

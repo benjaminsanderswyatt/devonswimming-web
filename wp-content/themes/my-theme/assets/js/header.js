@@ -1,11 +1,9 @@
-/*
-  Header menu toggle for mobile view
-*/
+/*--------- Header menu toggle for mobile view ---------*/
 
 document.addEventListener('DOMContentLoaded', () => {
   const toggle = document.querySelector('.menu-toggle');
   const nav = document.querySelector('.main-nav');
-  const menu = document.getElementById('primary-menu');  // used to close after click
+  const menu = document.getElementById('primary-menu');  // Used to close after click
   const panel = document.getElementById('menus-panel');
   
   // Ensure all elements exist
@@ -17,13 +15,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const EASING = 'ease';
   const mq = window.matchMedia('(max-width: 900px)');
 
-  // State flag. prevent double-taps
+  // State flag (prevent double taps)
   let animating = false;
 
   // Helpers
   const isOpen = () => nav.classList.contains('is-open');
 
-  /* Apply the "closed" baseline for mobile */
+  /* Apply the closed baseline for mobile */
   const applyMobileBaseline = () => {
     panel.style.transition = [
       `max-height ${DURATION}ms ${EASING}`,

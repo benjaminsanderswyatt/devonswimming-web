@@ -103,8 +103,8 @@
 }
 
 .ics-calendar-month-grid .event .descloc.hover_block .eventdesc p {
-    font-size: inherit;
-    color: inherit;
+  font-size: inherit;
+  color: inherit;
 }
 
 
@@ -208,9 +208,11 @@
       "month-select"
       "calendar";
   }
+
   .template-calendar .ics-calendar nav.ics-calendar-arrow-nav {
     justify-content: space-between;
   }
+
   .template-calendar .ics-calendar nav.ics-calendar-arrow-nav .today {
     flex: 1 0 100%;
   }

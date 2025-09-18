@@ -1,4 +1,4 @@
-/* Flex row for “Our Values” + “How We’re Organised” */
+/* Flex wrapper side by side */
 .about-row {
   display: flex;
   flex-wrap: wrap;
@@ -7,17 +7,15 @@
 }
 
 .about-row > .ar-item {
-  flex: 1 1 28rem;      /* two columns on wide, stack below ~28rem */
+  flex: 1 1 28rem; /* Two columns on wide, stack below rem */
   display: flex;
 }
 
-/* Neutralise container constraints inside row so columns share width evenly */
 .about-row > .ar-item.container {
   margin: 0;
   max-width: none;
 }
 
-/* Ensure inner flows and stretches */
 .about-row > .ar-item > .container-content {
   width: 100%;
   display: flex;

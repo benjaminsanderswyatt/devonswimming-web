@@ -63,7 +63,7 @@ jQuery(function($) {
             loading = true;
             showStatus('Loading more posts...');
 
-            //return; // Uncomment this line to disable AJAX loading for testing
+            //return; // Unncomment to test end of posts
 
 
             setTimeout(function() { // Delay

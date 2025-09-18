@@ -1,13 +1,10 @@
-/* =========================================
-   Concern Block — Flex, no margins (no CSS vars)
-   ========================================= */
+/*--------- Concern Block ---------*/
 .concern-block {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
 }
 
-/* Reset margins inside; spacing is via gap/padding */
 .concern-block :is(h2, h3, p, ul, ol, li) {
   margin: 0;
 }
@@ -27,7 +24,7 @@
   flex-wrap: wrap;
 }
 
-/* Left column flexes; emergency column sizes to content width */
+/* Left column flexes emergency column sizes to content width */
 .concern-block .concern-col {
   display: flex;
   flex-direction: column;
@@ -36,7 +33,7 @@
   min-width: 0;
 }
 
-/* Emergency aside (uses primary tones due to no danger red in palette) */
+/* Emergency aside */
 .concern-block .concern-col.emergency {
   flex: 0 1 min(28rem, 38%);
   background: var(--color-primary-10p);
@@ -127,11 +124,9 @@
   transform: translateY(-1px);
 }
 
-/* ================================
-   Safeguarding team / Org Contacts
-   ================================ */
+/*--------- Safeguarding team / Org Contacts ---------*/
 
-/* Flex row that WRAPS */
+/* Flex row that wraps */
 .concern-block .contact-list.flat {
   list-style: none;
   padding: 0;
@@ -147,7 +142,7 @@
   display: flex;
 }
 
-/* Uniform-color chips (no icons) */
+/* Chips */
 .concern-block .contact-list.flat li>a {
   display: inline-flex;
   align-items: center;
@@ -183,9 +178,7 @@
   justify-content: center;
 }
 
-/* ================================
-   Emergency list (white cards)
-   ================================ */
+/*--------- Emergency list ---------*/
 .concern-block .emergency-list {
   list-style: none;
   padding: 0;
@@ -216,9 +209,7 @@
   border-bottom-style: solid;
 }
 
-/* ================================
-   Print
-   ================================ */
+/*--------- Print ---------*/
 @media print {
   .concern-block {
     border: 0;
@@ -234,9 +225,7 @@
   }
 }
 
-/* =========================
-   Support & Helplines (wrap-friendly, full-width)
-   ========================= */
+/*--------- Support & Helplines ---------*/
 .support-block {
   display: flex;
   flex-direction: column;
@@ -309,9 +298,7 @@
   text-indent: 0;
 }
 
-/* =========================
-   Resources — column layout
-   ========================= */
+/*--------- Resources ---------*/
 .resources-list {
   display: flex;
   flex-direction: column;
@@ -366,7 +353,6 @@
   border-color: var(--color-primary);
 }
 
-/* Neutralize any prior "stretch" row behavior on resources */
 .resources-list.stretch li {
   flex: 0 0 auto;
 }
@@ -386,9 +372,7 @@
 
 
 
-/* =========================
-   Welfare Officer Role
-   ========================= */
+/*--------- Welfare Officer Role ---------*/
 .welfare-role-block {
   display: flex;
   flex-direction: column;
@@ -434,9 +418,7 @@
   border-color: var(--color-primary);
 }
 
-/* =========================
-   Two-up row (support + resources)
-   ========================= */
+/*--------- Two up row (support + resources) ---------*/
 .sr-row {
   display: flex;
   flex-wrap: wrap;
@@ -473,7 +455,7 @@
 
 
 
-/* === Restore original emergency red styling === */
+/*--------- Emergency red styling ---------*/
 .concern-block .concern-col.emergency {
   background: color-mix(in srgb, #c62828 6%, transparent);
   border: 1px solid color-mix(in srgb, #c62828 18%, rgba(0, 0, 0, 0.08));
@@ -494,32 +476,8 @@
   font-weight: 600;
   text-decoration: none;
   border-bottom: 1px dashed currentColor;
-  /* dashed underline restored */
 }
 
 .concern-block .emergency-list a:hover {
   border-bottom-style: solid;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

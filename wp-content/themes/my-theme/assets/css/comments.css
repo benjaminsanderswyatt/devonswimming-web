@@ -1,5 +1,5 @@
 .wpd-right-corner {
-  z-index: 1000 !important;
+    z-index: 1000 !important;
 }
 
 #comments.comments-area {
@@ -17,11 +17,11 @@
     padding: 0 20px;
 }
 
-#wpd-bubble-wrapper.wpd-right-corner {
+#wpd-bubble-wrapper.wpd-right-corner {}
 
-}
+@media (max-width: 600px) {
 
-@media (max-width: 600px) { /* overrides default */
+    /* overrides default */
     #wpd-bubble-wrapper.wpd-right-corner {
         bottom: 80px;
     }

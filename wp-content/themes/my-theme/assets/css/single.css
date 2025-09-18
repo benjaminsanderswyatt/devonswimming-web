@@ -14,7 +14,8 @@
 .nav-next {
     flex: 1;
     width: 100%;
-    max-width: calc(50% - 0.5rem); /* Adjust for gap */
+    max-width: calc(50% - 0.5rem);
+    /* Adjust for gap */
 }
 
 .nav-next {
@@ -46,7 +47,7 @@
     background-color: var(--color-primary-90p);
     border-color: var(--color-primary);
     transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
 
@@ -59,7 +60,8 @@
     font-style: italic;
     font-size: 0.9rem;
     text-align: center;
-    margin-left: auto; /* push to right */
+    margin-left: auto;
+    /* push to right */
 }
 
 /* Add default prev if missing */
@@ -71,5 +73,6 @@
     font-style: italic;
     font-size: 0.9rem;
     text-align: center;
-    margin-right: auto; /* push to left */
+    margin-right: auto;
+    /* push to left */
 }

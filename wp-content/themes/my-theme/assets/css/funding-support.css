@@ -1,7 +1,7 @@
-/* =========================
-   Funding — blocks & shared
-   ========================= */
-.funding-intro { color: var(--color-text); }
+/*--------- Funding ---------*/
+.funding-intro {
+  color: var(--color-text);
+}
 
 .funding-block {
   display: flex;
@@ -15,9 +15,11 @@
 }
 
 .funding-copy,
-.funding-note { color: var(--color-text); }
+.funding-note {
+  color: var(--color-text);
+}
 
-/* chips for rates + CTAs */
+/* Chips for rates + CTAs */
 .rate-chips,
 .funding-cta {
   display: flex;
@@ -27,7 +29,9 @@
   padding: 0;
 }
 
-.rate-chips li { display: flex; }
+.rate-chips li {
+  display: flex;
+}
 
 /* Base chip (neutral, non-clickable like rates) */
 .chip {
@@ -46,7 +50,7 @@
   cursor: default;
 }
 
-/* Clickable chips (anchors only): underline + hover */
+/* Clickable chips (underline + hover) */
 a.chip {
   background: var(--color-primary-10p);
   border-color: var(--color-primary-60p);
@@ -86,7 +90,7 @@ a.chip:focus-visible {
   counter-reset: step;
 }
 
-.funding-steps > li {
+.funding-steps>li {
   counter-increment: step;
   position: relative;
   display: flex;
@@ -99,7 +103,7 @@ a.chip:focus-visible {
   overflow-wrap: anywhere;
 }
 
-.funding-steps > li::before {
+.funding-steps>li::before {
   content: counter(step);
   position: absolute;
   top: 50%;
@@ -117,7 +121,7 @@ a.chip:focus-visible {
   line-height: 1;
 }
 
-/* deadline callout */
+/* Deadline callout */
 .deadline-callout {
   display: flex;
   align-items: center;
@@ -130,7 +134,7 @@ a.chip:focus-visible {
   flex-wrap: wrap;
 }
 
-/* two-up row (county + regional) */
+/* Two up row (county + regional) */
 .fr-row {
   display: flex;
   flex-wrap: wrap;
@@ -138,14 +142,17 @@ a.chip:focus-visible {
   align-items: stretch;
 }
 
-.fr-row > .fr-item {
+.fr-row>.fr-item {
   flex: 1 1 28rem;
   display: flex;
 }
 
-.fr-row > .fr-item.container { margin: 0; max-width: none; }
+.fr-row>.fr-item.container {
+  margin: 0;
+  max-width: none;
+}
 
-.fr-row > .fr-item > .container-content {
+.fr-row>.fr-item>.container-content {
   width: 100%;
   display: flex;
   flex-direction: column;

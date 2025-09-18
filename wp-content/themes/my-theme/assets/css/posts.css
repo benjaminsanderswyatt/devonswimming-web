@@ -1,5 +1,3 @@
-
-
 /*--------- Post Holder ---------*/
 .main-content-area {
   display: flex;
@@ -24,7 +22,7 @@
 }
 
 
-@media (max-width: 595px){
+@media (max-width: 595px) {
   .main-content-area article {
     border-left: none;
     border-right: none;
@@ -128,7 +126,7 @@
 }
 
 .read-more:hover,
-.read-more:focus{
+.read-more:focus {
   background: var(--color-primary-20p);
   transform: translateY(-1px);
 }
@@ -162,7 +160,7 @@
   opacity: 1;
 }
 
-.infinite-scroll-status.is-end{
+.infinite-scroll-status.is-end {
   margin-top: 24px;
 }
 
@@ -178,9 +176,12 @@
 }
 
 .infinite-scroll-status.is-end::before {
-  display: none; /* Hide spinner when at end */
+  display: none;
+  /* Hide spinner when at end */
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
