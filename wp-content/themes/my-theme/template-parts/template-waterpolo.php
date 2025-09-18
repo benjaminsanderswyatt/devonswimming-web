@@ -24,7 +24,6 @@ $order_tokens = array_values(array_unique($order_tokens));
         null,
         [
             'image_alt'    => 'Water polo player scoring a goal',
-            'button_label' => 'Website',
         ]
     );
     ?>

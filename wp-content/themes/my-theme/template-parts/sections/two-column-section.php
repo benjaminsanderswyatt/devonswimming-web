@@ -13,7 +13,7 @@
 // For reversing flex direction
 $reverse_layout = !empty($args['reverse']) ? 'reverse-layout' : '';
 
-$button_label = $args['button_label'] ?? 'Website';
+$button_label = get_field('section_button_label') ?: 'Website';
 
 $section_image = get_field('section_image');
 $section_header = get_field('section_header');
