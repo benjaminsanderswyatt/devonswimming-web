@@ -1,10 +1,19 @@
 /*
 Theme Name: Devon Swimming
 Theme URI: https://www.devonswimming.org.uk/
-Author: BSW
-Description: Custom theme for Devon Swimming
-Version: 1.0
+Author: Ben Sanders-Wyatt
+Author URI: https://bsanderswyatt.com/
+Description: Custom WordPress theme for Devon County ASA. Requires ACF, ICS Calendar, and wpDiscuz plugins.
+Version: 1.1.0
 Text Domain: devon-swimming
+Domain Path: /languages
+Requires at least: 6.5
+Tested up to: 6.8
+Requires PHP: 8.1
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Tags: custom-menu, custom-logo, featured-images, theme-options, block-styles, full-width-template
+Update URI: devon-swimming
 */
 
 :root {

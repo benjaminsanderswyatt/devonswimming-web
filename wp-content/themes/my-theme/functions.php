@@ -14,6 +14,10 @@ function my_theme_setup()
     add_theme_support('post-thumbnails');
     add_theme_support('menus');
 
+    add_theme_support('html5', ['search-form','comment-form','comment-list','gallery','caption','style','script','navigation-widgets']);
+    add_theme_support('responsive-embeds');
+    add_theme_support('align-wide');
+
     register_nav_menus([
         'primary' => __('Primary Menu', 'devon-swimming'),
         'links'   => __('Links Menu', 'devon-swimming'),
@@ -22,6 +26,12 @@ function my_theme_setup()
 }
 add_action('after_setup_theme', 'my_theme_setup');
 
+add_action('init', function () {
+    remove_action('wp_head', 'print_emoji_detection_script', 7);
+    remove_action('wp_print_styles', 'print_emoji_styles');
+    remove_action('wp_head', 'rest_output_link_wp_head', 10);
+    remove_action('wp_head', 'wp_oembed_add_discovery_links', 10);
+});
 
 
 /*--------- Styles and Scripts ---------*/
@@ -94,31 +104,6 @@ add_filter('excerpt_more', function ($more) {
 
 
 
-/* --------- Sidebar Widgets --------- */
-function devon_swimming_register_sidebars()
-{
-    register_sidebar([
-        'name'          => __('Events Sidebar', 'devon-swimming'),
-        'id'            => 'events-sidebar',
-        'description'   => __('Left sidebar for events.', 'devon-swimming'),
-        'before_widget' => '<section id="%1$s" class="widget %2$s">',
-        'after_widget'  => '</section>',
-        'before_title'  => '<h3 class="widget-title">',
-        'after_title'   => '</h3>',
-    ]);
-}
-add_action('widgets_init', 'devon_swimming_register_sidebars');
-
-
-
-
-
-
-
-
-
-
-
 /* --------- Social Icons --------- */
 /* Map a social URL to a slug used as the SVG. Fallback globe */
 
@@ -131,7 +116,6 @@ function devon_social_slug_from_url($url)
     if (strpos($host, 'instagram.com') !== false) return 'instagram';
     if (strpos($host, 'twitter.com') !== false || strpos($host, 'x.com') !== false) return 'x';
     if (strpos($host, 'youtube.com') !== false || strpos($host, 'youtu.be') !== false) return 'youtube';
-    if (strpos($host, 'swimming.org') !== false) return 'swimengland';
     if (strpos($host, 'swimming.org') !== false || strpos($host, 'swimengland.org') !== false) return 'swimengland';
 
     // Default icon
