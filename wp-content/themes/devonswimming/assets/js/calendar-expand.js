@@ -4,7 +4,6 @@
     WRAPPER_SELECTOR: '.ics-calendar-date-wrapper',
     MONTH_LABEL_SELECTOR: '.ics-calendar-label', // e.g. August 2025
     TIME_SELECTOR: 'time[datetime]', // optional if present
-    CAL_URL: 'https://devonswimming-new.ddev.site/calendar/',
     PARAM_KEY: 'r34icsym', // YYYYMM for url
     // Accept these month names (short/long, case insensitive)
     MONTHS: {
@@ -33,6 +32,30 @@
     return { y: d.getFullYear(), m: d.getMonth() + 1 };
   };
 
+
+  // Find the WordPress home URL (preferred), else use the origin.
+  const getSiteBaseUrl = () => {
+    const loc = new URL(location.href);
+    const homeEl = document.querySelector('link[rel="home"]');
+    if (homeEl?.href) {
+      try {
+        const homeURL = new URL(homeEl.href, loc);
+        if (homeURL.host === loc.host && homeURL.protocol === loc.protocol) {
+          if (!homeURL.pathname.endsWith('/')) homeURL.pathname += '/';
+          return homeURL;
+        }
+      } catch { }
+    }
+    return new URL('/', loc);
+  };
+
+
+  // Always produce <site-base>/calendar/ as an absolute URL
+  const getCalendarBaseUrl = () => {
+    const siteBase = getSiteBaseUrl();
+    const cal = new URL('calendar/', siteBase);
+    return cal.href;
+  };
 
   const ymFromTime = (wrapper) => {
     const t = wrapper.querySelector(CONFIG.TIME_SELECTOR);
@@ -97,20 +120,33 @@
 
   const buildMonthUrl = ({ y, m }) => {
     const now = getCurrentYM();
+    const base = getCalendarBaseUrl(); // dynamic, site-aware
     if (sameYearMonth({ y, m }, now)) {
-      // Current month plain calendar URL (no param)
-      return CONFIG.CAL_URL;
+      // Current month: plain /calendar/ with no param
+      return base;
     }
-    return CONFIG.CAL_URL + '?' + CONFIG.PARAM_KEY + '=' + y + pad2(m);
+    const url = new URL(base);
+    url.searchParams.set(CONFIG.PARAM_KEY, `${y}${pad2(m)}`);
+    return url.href;
   };
 
   // Respect modifier keys and middle click
   const navigate = (url, evt) => {
+    const target = new URL(url, location.href);
+    // Strip hash for equality check; keep query/path/protocol/host
+    const current = new URL(location.href);
+    if (!target.pathname.endsWith('/')) target.pathname += '/';
+    if (!current.pathname.endsWith('/')) current.pathname += '/';
+    target.hash = '';
+    current.hash = '';
+
+    if (target.href === current.href) return; // no-op; don't create a new history entry
+
     if (evt && (evt.metaKey || evt.ctrlKey || evt.shiftKey || evt.altKey || evt.button === 1)) {
-      window.open(url, '_blank', 'noopener');
-      return;
+      window.open(target.href, '_blank', 'noopener');
+    } else {
+      location.assign(target.href); // assign vs href is fine; both create a single entry
     }
-    window.location.href = url;
   };
 
   // Dont hijack real links inside
@@ -184,4 +220,67 @@
     initExisting();
     mo.observe(document.body, { childList: true, subtree: true });
   }
+})();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Close ICS Calendar lightbox when clicking outside the card or pressing Esc
+(function () {
+  function closeLightbox(lb) {
+    if (!lb) return;
+    lb.classList.remove('open');
+    document.body.classList.remove('r34ics-noscroll');
+  }
+
+  // click on backdrop (outside content) closes
+  document.addEventListener('click', function (e) {
+    // is there an open lightbox?
+    const openBoxes = document.querySelectorAll('.r34ics_lightbox.open');
+    if (!openBoxes.length) return;
+
+    // if the click target IS the backdrop (not the inner content), close it
+    openBoxes.forEach(lb => {
+      if (e.target === lb) {
+        closeLightbox(lb);
+      }
+    });
+  });
+
+  document.addEventListener('click', function (e) {
+    const btn = e.target.closest('.r34ics_lightbox_close');
+    if (!btn) return;
+    const lb = btn.closest('.r34ics_lightbox');
+    closeLightbox(lb);
+  });
+
+  // Esc key closes
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    document.querySelectorAll('.r34ics_lightbox.open').forEach(closeLightbox);
+  });
 })();

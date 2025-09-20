@@ -8,7 +8,7 @@
 
 /* --------- Theme Setup --------- */
 
-function my_theme_setup()
+function devonswimming_setup()
 {
     add_theme_support('title-tag');
     add_theme_support('post-thumbnails');
@@ -24,7 +24,7 @@ function my_theme_setup()
         'footer'  => __('Footer Menu', 'devon-swimming'),
     ]);
 }
-add_action('after_setup_theme', 'my_theme_setup');
+add_action('after_setup_theme', 'devonswimming_setup');
 
 add_action('init', function () {
     remove_action('wp_head', 'print_emoji_detection_script', 7);
@@ -35,45 +35,45 @@ add_action('init', function () {
 
 
 /*--------- Styles and Scripts ---------*/
-function my_theme_enqueue_files()
+function devonswimming_enqueue_files()
 {
     // Main style.css from the theme root
-    wp_enqueue_style('my-theme-style', get_stylesheet_uri());
+    wp_enqueue_style('devonswimming-style', get_stylesheet_uri());
 
     // Specific styles
-    wp_enqueue_style('my-theme-header-style', get_template_directory_uri() . '/assets/css/header.css', [], null);
-    wp_enqueue_style('my-theme-footer-style', get_template_directory_uri() . '/assets/css/footer.css', [], null);
-    wp_enqueue_style('my-theme-front-page-style', get_template_directory_uri() . '/assets/css/front-page.css', [], null);
-    wp_enqueue_style('my-theme-posts-style', get_template_directory_uri() . '/assets/css/posts.css', [], null);
+    wp_enqueue_style('devonswimming-header-style', get_template_directory_uri() . '/assets/css/header.css', [], null);
+    wp_enqueue_style('devonswimming-footer-style', get_template_directory_uri() . '/assets/css/footer.css', [], null);
+    wp_enqueue_style('devonswimming-front-page-style', get_template_directory_uri() . '/assets/css/front-page.css', [], null);
+    wp_enqueue_style('devonswimming-posts-style', get_template_directory_uri() . '/assets/css/posts.css', [], null);
 
-    wp_enqueue_style('my-theme-single-style', get_template_directory_uri() . '/assets/css/single.css', [], null);
-    wp_enqueue_style('my-theme-comments-style', get_template_directory_uri() . '/assets/css/comments.css', [], null);
+    wp_enqueue_style('devonswimming-single-style', get_template_directory_uri() . '/assets/css/single.css', [], null);
+    wp_enqueue_style('devonswimming-comments-style', get_template_directory_uri() . '/assets/css/comments.css', [], null);
 
-    wp_enqueue_style('my-theme-clubs-style', get_template_directory_uri() . '/assets/css/clubs.css', [], null);
-    wp_enqueue_style('my-theme-calendar-style', get_template_directory_uri() . '/assets/css/calendar.css', [], null);
-    wp_enqueue_style('my-theme-tab-grid-style', get_template_directory_uri() . '/assets/css/tab-grid.css', [], null);
-    wp_enqueue_style('my-theme-past-presidents-style', get_template_directory_uri() . '/assets/css/past-presidents.css', [], null);
-    wp_enqueue_style('my-theme-about-us-style', get_template_directory_uri() . '/assets/css/about-us.css', [], null);
-    wp_enqueue_style('my-theme-officials-style', get_template_directory_uri() . '/assets/css/officials.css', [], null);
-    wp_enqueue_style('my-theme-safeguarding-welfare-style', get_template_directory_uri() . '/assets/css/safeguarding-welfare.css', [], null);
-    wp_enqueue_style('my-theme-funding-support-style', get_template_directory_uri() . '/assets/css/funding-support.css', [], null);
+    wp_enqueue_style('devonswimming-clubs-style', get_template_directory_uri() . '/assets/css/clubs.css', [], null);
+    wp_enqueue_style('devonswimming-calendar-style', get_template_directory_uri() . '/assets/css/calendar.css', [], null);
+    wp_enqueue_style('devonswimming-tab-grid-style', get_template_directory_uri() . '/assets/css/tab-grid.css', [], null);
+    wp_enqueue_style('devonswimming-past-presidents-style', get_template_directory_uri() . '/assets/css/past-presidents.css', [], null);
+    wp_enqueue_style('devonswimming-about-us-style', get_template_directory_uri() . '/assets/css/about-us.css', [], null);
+    wp_enqueue_style('devonswimming-officials-style', get_template_directory_uri() . '/assets/css/officials.css', [], null);
+    wp_enqueue_style('devonswimming-safeguarding-welfare-style', get_template_directory_uri() . '/assets/css/safeguarding-welfare.css', [], null);
+    wp_enqueue_style('devonswimming-funding-support-style', get_template_directory_uri() . '/assets/css/funding-support.css', [], null);
 
-    wp_enqueue_style('my-theme-swimming-style', get_template_directory_uri() . '/assets/css/swimming.css', [], null);
+    wp_enqueue_style('devonswimming-swimming-style', get_template_directory_uri() . '/assets/css/swimming.css', [], null);
 
 
 
-    wp_enqueue_style('my-theme-two-column-section-style', get_template_directory_uri() . '/assets/css/two-column-section.css', [], null);
-    wp_enqueue_style('my-theme-multiple-buttons-style', get_template_directory_uri() . '/assets/css/multiple-buttons.css', [], null);
-    wp_enqueue_style('my-theme-grid-style', get_template_directory_uri() . '/assets/css/grid.css', [], null);
+    wp_enqueue_style('devonswimming-two-column-section-style', get_template_directory_uri() . '/assets/css/two-column-section.css', [], null);
+    wp_enqueue_style('devonswimming-multiple-buttons-style', get_template_directory_uri() . '/assets/css/multiple-buttons.css', [], null);
+    wp_enqueue_style('devonswimming-grid-style', get_template_directory_uri() . '/assets/css/grid.css', [], null);
 
 
 
     // Scripts
-    wp_enqueue_script('my-theme-header-script', get_template_directory_uri() . '/assets/js/header.js', [], null, true);
-    wp_enqueue_script('my-theme-calendar-expand-script', get_template_directory_uri() . '/assets/js/calendar-expand.js', [], null, true);
+    wp_enqueue_script('devonswimming-header-script', get_template_directory_uri() . '/assets/js/header.js', [], null, true);
+    wp_enqueue_script('devonswimming-calendar-expand-script', get_template_directory_uri() . '/assets/js/calendar-expand.js', [], null, true);
     // Infinate scroll (on designated section)
 }
-add_action('wp_enqueue_scripts', 'my_theme_enqueue_files');
+add_action('wp_enqueue_scripts', 'devonswimming_enqueue_files');
 
 
 

@@ -48,6 +48,7 @@ $text = function_exists('get_field') ? get_field('text') : '';
                 'ua'           => 'WordPress ICS Calendar', // add UA so cURL sends a header
                 'debug'        => 'false', // set to "true" to enable debug mode (useful for troubleshooting)
                 // inherit site timezone; free plugin picks this up automatically
+                'toggle'        => 'lightbox',
             ];
 
             $parts = [];

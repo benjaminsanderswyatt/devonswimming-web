@@ -54,9 +54,8 @@
 
 
 
-
-
 /* --------- Event hover blocks --------- */
+/*
 .ics-calendar-month-grid tbody tr td .events .event .hover_block {
   background-color: white;
   border: 1px solid var(--color-primary);
@@ -106,16 +105,45 @@
   font-size: inherit;
   color: inherit;
 }
+*/
 
 
+html .r34ics_lightbox .r34ics_lightbox_inner {
+  background-color: white;
+  border: 1px solid var(--color-primary);
+  border-radius: 12px;
+  overflow: hidden;
+}
 
+.r34ics_lightbox .r34ics_lightbox_inner .r34ics_lightbox_close {
+  background-color: var(--color-primary);
+  top: 0;
+  right: 0;
+  border-radius: 0 0 0 12px;
+  align-items: center;
+  text-align: center;
+}
 
+.r34ics_lightbox .r34ics_lightbox_inner .r34ics_lightbox_content .time_in_hover_block,
+.r34ics_lightbox .r34ics_lightbox_inner .r34ics_lightbox_content .date_in_hover_block {
+  color: #6C757D;
+}
 
+.r34ics_lightbox .r34ics_lightbox_inner .r34ics_lightbox_content .title_in_hover_block {
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-primary);
+}
 
+.r34ics_lightbox .r34ics_lightbox_inner .r34ics_lightbox_content .location {
 
+}
 
-
-
+.r34ics_lightbox .r34ics_lightbox_inner .r34ics_lightbox_content .eventdesc {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-primary);
+  line-height: 1.4;
+}
 
 
 

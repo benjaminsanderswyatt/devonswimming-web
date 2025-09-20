@@ -91,6 +91,13 @@
                 "operator": "==",
                 "value": "template-parts\/template-safeguarding-welfare.php"
             }
+        ],
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "template-parts\/template-officials.php"
+            }
         ]
     ],
     "menu_order": 0,
@@ -102,5 +109,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1758298211
+    "modified": 1758319555
 }

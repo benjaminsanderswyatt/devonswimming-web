@@ -1,5 +1,5 @@
 # BEGIN WpFastestCache
-# Modified Time: 16-09-25 14:40:25
+# Modified Time: 19-09-25 20:37:07
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /
@@ -57,7 +57,6 @@ AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
 AddOutputFilterByType DEFLATE font/opentype font/ttf font/eot font/otf
 </IfModule>
 # END GzipWpFastestCache
-
 # BEGIN LBCWpFastestCache
 <FilesMatch "\.(webm|ogg|mp4|ico|pdf|flv|avif|jpg|jpeg|png|gif|webp|js|css|swf|x-html|xml|woff|woff2|otf|ttf|svg|eot)(\.gz)?$">
 <IfModule mod_expires.c>
