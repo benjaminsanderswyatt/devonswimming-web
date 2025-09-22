@@ -29,9 +29,11 @@
   padding: 0;
 }
 
-.rate-chips li {
+.container-content .rate-chips li {
   display: flex;
+  margin: 0;
 }
+
 
 /* Base chip (neutral, non-clickable like rates) */
 .chip {

@@ -185,3 +185,134 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*--------- POST PAGE ---------*/
+/*
+main article.container .entry-header{
+  width: 100%;
+  border-bottom: 1px solid var(--color-primary);
+  padding: 0 5% 0.5rem 5%;
+  margin-bottom: 0.5rem;
+}
+
+main article.container .entry-content{
+  width: 100%;
+}
+
+*/
+
+
+
+
+
+/*--------- POST PAGE ---------*/
+main article.container .entry-header {
+  width: 100%;
+  border-bottom: 1px solid var(--color-primary);
+  padding: 0 5% 0.5rem 5%;
+  margin-bottom: 1rem;
+}
+
+/* Title and meta */
+main article.container .entry-header .entry-title {
+  margin: 0 0 0.25rem 0;
+}
+
+main article.container .entry-header .entry-meta {
+  font-size: 0.9rem;
+  color: #72767a;
+  margin-bottom: 0.75rem;
+}
+
+
+
+/* Featured image wrapper */
+main article.container .entry-header .post-thumbnail {
+  margin: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  width: fit-content;
+  height: fit-content;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .06);
+}
+
+/* Featured image itself */
+main article.container .entry-header .post-thumbnail img {
+  display: block;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+  max-width: 100%;
+}
+
+
+
+
+
+/*--------- Content area ---------*/
+main article.container .entry-content {
+  width: 100%;
+}
+
+
+main article.container .entry-content {
+  width: 100%;
+  --content-img-max: 800px;
+}
+
+main article.container .entry-content img {
+  display: block;
+  height: auto !important;
+  max-width: min(100%, var(--content-img-max));
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .06);
+}
+
+main article.container .entry-content figure {
+  max-width: min(100%, var(--content-img-max));
+  margin: 1rem auto;
+}
+
+main article.container .entry-content figure img {
+  height: auto !important;
+  max-width: 100%;
+  border-radius: 12px;
+}
+
+main article.container .entry-content figcaption {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #72767a;
+  margin-top: .5rem;
+}
+
+main article.container .entry-content .postie-post img,
+main article.container .entry-content>div img {
+  height: auto !important;
+  max-width: min(100%, var(--content-img-max)) !important;
+}

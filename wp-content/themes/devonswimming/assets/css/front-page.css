@@ -181,7 +181,7 @@
   padding: 0 8px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
 }
 
 
@@ -205,7 +205,7 @@
 /* A single event block */
 .sidebar .events-widget .ics-calendar-date-wrapper {
   display: flex;
-  gap: 4px;
+  gap: 4px 8px;
   background: none;
   width: 100%;
   height: fit-content;
@@ -230,7 +230,7 @@
   display: block;
   height: 1px;
   width: 100%;
-  top: -3px;
+  top: -5px;
   left: 0;
   background-color: var(--color-primary-20p);
 }
@@ -442,7 +442,7 @@
     height: 100%;
     width: 1px;
     top: 0;
-    left: -3px;
+    left: -5px;
   }
 
   .sidebar .events-widget .ics-calendar-date-wrapper {
@@ -659,4 +659,16 @@
 .button--create-notice:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
+}
+
+
+/* 
+Hide the Notice sidebar on small screens when:
+  - there is no "Create Notice" button (not an editor/admin)
+  - and there are no notices
+*/
+@media (max-width: 992px) {
+  .sidebar-right:not(:has(.button--create-notice)):not(:has(.notice-board .notice)) {
+    display: none !important;
+  }
 }
