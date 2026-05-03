@@ -64,6 +64,7 @@ function devonswimming_enqueue_files()
 
     wp_enqueue_style('devonswimming-two-column-section-style', get_template_directory_uri() . '/assets/css/two-column-section.css', [], null);
     wp_enqueue_style('devonswimming-multiple-buttons-style', get_template_directory_uri() . '/assets/css/multiple-buttons.css', [], null);
+    wp_enqueue_style('devonswimming-multiple-files-style', get_template_directory_uri() . '/assets/css/multiple-files.css', [], null);
     wp_enqueue_style('devonswimming-grid-style', get_template_directory_uri() . '/assets/css/grid.css', [], null);
 
 
@@ -897,7 +898,16 @@ add_action('restrict_manage_posts', function ($post_type) {
 
 
 
-
+function register_documents_section_cpt() {
+    register_post_type('documents_section', [
+        'label' => 'Documents Sections',
+        'public' => true,
+        'show_ui' => true,
+        'supports' => ['title', 'editor'],
+        'menu_icon' => 'dashicons-media-document',
+    ]);
+}
+add_action('init', 'register_documents_section_cpt');
 
 
 

@@ -1,0 +1,12 @@
+.container-multiple-files {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+}
+
+@media (max-width: 600px) {
+    .container-multiple-files {
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+}

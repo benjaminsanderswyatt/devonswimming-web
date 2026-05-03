@@ -358,6 +358,16 @@
 
 
 
+.sidebar .events-widget .ics-calendar-date .time-inline {
+  color:white;
+  padding: 4px 0rem;
+}
+
+
+
+
+
+
 /* events list within a day */
 /* DL list wrapper for the days events */
 .sidebar .events-widget .ics-calendar.r34ics_compact dl.events {

@@ -22,7 +22,7 @@ $county_steps_2    = $gf('county_step_2');                // "Complete your burs
 $county_steps_3    = $gf('county_step_3');                // "On receipt of your certificate..."
 $county_email      = trim((string)$gf('county_email'));   // "bursaries@devonswimming.org.uk"
 $county_form_label = $gf('county_form_label');            // "DCASA bursary application 2025"
-$county_form_url   = trim((string)$gf('county_form_url')); // URL (page on your site preferred)
+$county_form_file   = $gf('county_form_file'); // File array
 $county_deadline   = trim((string)$gf('county_deadline')); // free text or date formatted
 $county_note       = $gf('county_note');                  // "Copies of receipts/certificates required"
 
@@ -35,7 +35,7 @@ $regional_rate_l3     = trim((string)$gf('regional_rate_l3'));  // "£200"
 $regional_limit_text  = $gf('regional_limit_text');             // "Max 3 per discipline per club..."
 $regional_submit_note = $gf('regional_submit_note');            // "Submit at same time as county..."
 $regional_form_label  = $gf('regional_form_label');             // "SESW bursary application form 2025"
-$regional_form_url    = trim((string)$gf('regional_form_url')); // URL
+$regional_form_file   = $gf('regional_form_file'); // File array
 $regional_note        = $gf('regional_note');                   // extra notes if needed
 $global_deadline      = trim((string)$gf('funding_deadline'));  // "Deadline 30 November 2025"
 
@@ -43,11 +43,11 @@ $global_deadline      = trim((string)$gf('funding_deadline'));  // "Deadline 30 
 $has_county = (
     $county_heading || $county_intro || $county_rate_l1 || $county_rate_l2 ||
     $county_steps_1 || $county_steps_2 || $county_steps_3 ||
-    $county_form_url || $county_email || $county_deadline || $county_note
+    $county_form_file || $county_email || $county_deadline || $county_note
 );
 $has_regional = (
     $regional_heading || $regional_intro || $regional_rate_l1 || $regional_rate_l2 || $regional_rate_l3 ||
-    $regional_form_url || $regional_limit_text || $regional_submit_note || $regional_note || $global_deadline
+    $regional_form_file || $regional_limit_text || $regional_submit_note || $regional_note || $global_deadline
 );
 ?>
 
@@ -100,11 +100,11 @@ $has_regional = (
                             <div class="funding-note"><?php echo wp_kses_post($county_note); ?></div>
                         <?php endif; ?>
 
-                        <?php if ($county_form_url || $county_email): ?>
+                        <?php if ($county_form_file || $county_email): ?>
                             <div class="funding-cta">
-                                <?php if ($county_form_url): ?>
-                                    <a class="chip" href="<?php echo esc_url($county_form_url); ?>" target="_blank" rel="noopener">
-                                        <?php echo esc_html($county_form_label ?: 'Bursary Application Form'); ?>
+                                <?php if (!empty($county_form_file['url'])): ?>
+                                    <a class="chip" href="<?php echo esc_url($county_form_file['url']); ?>" target="_blank" rel="noopener">
+                                        <?php echo esc_html($county_form_label ?: ($county_form_file['title'] ?? 'Bursary Application Form')); ?>
                                     </a>
                                 <?php endif; ?>
                                 <?php if ($county_email): ?>
@@ -162,10 +162,10 @@ $has_regional = (
                             <div class="funding-note"><?php echo wp_kses_post($regional_note); ?></div>
                         <?php endif; ?>
 
-                        <?php if ($regional_form_url): ?>
+                        <?php if (!empty($regional_form_file['url'])): ?>
                             <div class="funding-cta">
-                                <a class="chip" href="<?php echo esc_url($regional_form_url); ?>" target="_blank" rel="noopener">
-                                    <?php echo esc_html($regional_form_label ?: 'SESW Bursary Application Form'); ?>
+                                <a class="chip" href="<?php echo esc_url($regional_form_file['url']); ?>" target="_blank" rel="noopener">
+                                    <?php echo esc_html($regional_form_label ?: ($regional_form_file['title'] ?? 'SESW Bursary Application Form')); ?>
                                 </a>
                             </div>
                         <?php endif; ?>

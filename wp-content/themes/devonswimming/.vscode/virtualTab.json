@@ -1,0 +1,18 @@
+[
+  {
+    "id": "builtin_group_id",
+    "name": "Currently Open Files",
+    "files": [
+      "template-parts/sections/multiple-files.php",
+      "template-parts/sections/container-info.php",
+      "template-parts/template-documents.php",
+      "template-parts/sections/two-column-section.php",
+      "assets/css/calendar.css",
+      "assets/css/front-page.css",
+      "style.css",
+      "functions.php",
+      "assets/css/multiple-files.css"
+    ],
+    "builtIn": true
+  }
+]
